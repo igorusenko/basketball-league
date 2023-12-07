@@ -1,0 +1,12 @@
+<div class="custom-field">
+  <label>{{label}}</label>
+  <input [id]="id"
+         [type]="type"
+         [formControl]="control"
+         [placeholder]="placeholder"
+         [class.error]="control.touched && control.errors"
+  />
+  <div *ngIf="control.touched && control.errors" class="errors-block">
+    Required
+  </div>
+</div>
