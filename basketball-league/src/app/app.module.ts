@@ -7,13 +7,17 @@ import { UiComponent } from './ui/ui.component';
 import { InputComponent } from './shared/input/input.component';
 import {ReactiveFormsModule} from "@angular/forms";
 import { SearchComponent } from './shared/search/search.component';
+import { SelectComponent } from './shared/select/select.component';
+import { MultiselectComponent } from './shared/multiselect/multiselect.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     UiComponent,
     InputComponent,
-    SearchComponent
+    SearchComponent,
+    SelectComponent,
+    MultiselectComponent
   ],
   imports: [
     BrowserModule,

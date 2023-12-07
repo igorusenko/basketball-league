@@ -1,4 +1,5 @@
 .custom-field {
+  max-width: 364px;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
@@ -16,7 +17,6 @@
   -moz-appearance: none;
   appearance: none;
   padding: 12px;
-  width: 366px;
   font-size: 14px;
   outline: none;
   background: #F6F6F6;

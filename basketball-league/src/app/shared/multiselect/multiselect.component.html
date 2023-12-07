@@ -1,0 +1,24 @@
+<div class="select-outer">
+  <div class="select-inner">
+    <div class="choosen-item" *ngFor="let item of getChoosenOptions()">
+      <p>{{item.name}}</p>
+      <img (click)="deleteChoosenOption(item.id)" src="./assets/icons/close.svg" alt="">
+    </div>
+  </div>
+  <div class="expand-button">
+    <div *ngIf="choosenItems.length > 0" (click)="unCheckAllOptions()" class="close-block">
+      <img src="./assets/icons/close_gray.svg" alt="">
+    </div>
+    <img src="./assets/icons/line_horizontal.svg" alt="">
+    <div (click)="selectService.toggleSelect(selectName)" class="expand-block">
+      <img src="./assets/icons/expand.svg" alt="">
+    </div>
+  </div>
+</div>
+
+<div *ngIf="getDropdownState()" class="select-dropdown">
+  <div *ngFor="let item of options" [class.active]="isActiveOption(item)" class="dropdown-item"
+       (click)="selectOption(item)">
+    {{item.name}}
+  </div>
+</div>
