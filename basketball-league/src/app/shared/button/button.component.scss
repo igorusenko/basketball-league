@@ -1,0 +1,30 @@
+.custom-button {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  background-color: #E4163A;
+  border-radius: 4px;
+  max-width: 364px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #FF5761;
+  }
+
+  &:active {
+    background-color: #C60E2E;
+  }
+
+  p {
+    padding: 0.5rem 0;
+    color: #FFF;
+  }
+}
+.disabled {
+  background-color: #F6F6F6;
+  cursor: default;
+
+  p {
+    color: #D1D1D1;
+  }
+}

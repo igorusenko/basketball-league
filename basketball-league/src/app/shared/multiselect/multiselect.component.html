@@ -8,6 +8,9 @@
       <div class="choosen-item" *ngIf="choosenItems.length > 3">
         ...
       </div>
+      <div class="no-items" *ngIf="choosenItems.length === 0">
+        Select...
+      </div>
     </div>
 
     <div class="buttons-block">

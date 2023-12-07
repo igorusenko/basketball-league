@@ -10,6 +10,7 @@ import { SearchComponent } from './shared/search/search.component';
 import { SelectComponent } from './shared/select/select.component';
 import { MultiselectComponent } from './shared/multiselect/multiselect.component';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import { ButtonComponent } from './shared/button/button.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     InputComponent,
     SearchComponent,
     SelectComponent,
-    MultiselectComponent
+    MultiselectComponent,
+    ButtonComponent
   ],
   imports: [
     BrowserModule,
