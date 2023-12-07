@@ -18,7 +18,7 @@ import {animate, state, style, transition, trigger} from "@angular/animations";
 })
 export class SelectComponent {
   @Input() multiple: boolean = false;
-  @Input() selectName: string = 'test';
+  @Input() selectName: string = 'amogus';
   @Input() options: Array<SelectItemInterface> = [
     {name: 'Test', id: 0, choosen: true},
     {name: 'Test1', id: 1},
@@ -62,10 +62,6 @@ export class SelectComponent {
 
   unCheckAllOptions(): void {
     this.choosenItems = [];
-  }
-
-  deleteChoosenOption(id: number): void {
-    this.choosenItems.splice(this.choosenItems.findIndex(option => option.id === id), 1);
   }
 
   isActiveOption(item: SelectItemInterface): boolean {
