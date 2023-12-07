@@ -11,6 +11,7 @@ import { SelectComponent } from './shared/select/select.component';
 import { MultiselectComponent } from './shared/multiselect/multiselect.component';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import { ButtonComponent } from './shared/button/button.component';
+import { PaginatorComponent } from './shared/paginator/paginator.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { ButtonComponent } from './shared/button/button.component';
     SearchComponent,
     SelectComponent,
     MultiselectComponent,
-    ButtonComponent
+    ButtonComponent,
+    PaginatorComponent
   ],
   imports: [
     BrowserModule,

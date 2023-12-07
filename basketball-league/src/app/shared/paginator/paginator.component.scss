@@ -1,0 +1,17 @@
+.paginator-container {
+  display: flex;
+  align-items: center;
+  //gap: 1rem;
+  * {
+    cursor: pointer;
+  }
+  p {
+    padding: 10px 1rem;
+    color: #707070;
+    border-radius: 4px;
+  }
+  .active {
+    background-color: #E4163A;
+    color: #FFF;
+  }
+}

@@ -1,0 +1,9 @@
+<div class="paginator-container">
+  <img (click)="setActivePreviousPage()" src="./assets/icons/arrow-left.svg" alt="">
+  <p [class.active]="page.isActive"
+     *ngFor="let page of pages"
+     (click)="setPage(page)">{{page.name}}</p>
+  <p>...</p>
+  <p>{{totalCount}}</p>
+  <img (click)="setActiveNextPage()" src="./assets/icons/arow-right.svg" alt="">
+</div>
