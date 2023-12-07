@@ -58,6 +58,10 @@
       border-right: 0.5px solid #D1D1D1;
       cursor: pointer;
 
+      &:hover {
+        background-color: #FF768E;
+      }
+
       &:first-child {
         border-top: 0.5px solid #D1D1D1;
         border-radius: 4px 4px 0 0;
@@ -72,6 +76,6 @@
 }
 
 .active {
-  background-color: #C60E2E;
+  background-color: #C60E2E !important;
   color: #FFF !important;
 }

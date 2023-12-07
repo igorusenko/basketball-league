@@ -9,6 +9,7 @@ import {ReactiveFormsModule} from "@angular/forms";
 import { SearchComponent } from './shared/search/search.component';
 import { SelectComponent } from './shared/select/select.component';
 import { MultiselectComponent } from './shared/multiselect/multiselect.component';
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { MultiselectComponent } from './shared/multiselect/multiselect.component
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
