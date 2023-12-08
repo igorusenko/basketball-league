@@ -1,0 +1,35 @@
+@import 'src/variables';
+header {
+  background: var(--ui-white, #FFF);
+  box-shadow: 0px 1px 10px 0px rgba(209, 209, 209, 0.50);
+  padding: 1rem 3rem;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .mobile-burger {
+    display: none;
+  }
+
+  .account-block {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+}
+@media screen and (max-width: $phone-extension){
+  header {
+    padding: 19px 12px;
+    justify-content: space-around ;
+
+    .account-block {
+      display: none !important;
+    }
+
+    .mobile-burger {
+      display: block;
+    }
+  }
+}

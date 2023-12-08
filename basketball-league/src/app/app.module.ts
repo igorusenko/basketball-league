@@ -12,6 +12,8 @@ import { MultiselectComponent } from './shared/multiselect/multiselect.component
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import { ButtonComponent } from './shared/button/button.component';
 import { PaginatorComponent } from './shared/paginator/paginator.component';
+import { HeaderComponent } from './layouts/header/header.component';
+import { NavbarComponent } from './layouts/navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { PaginatorComponent } from './shared/paginator/paginator.component';
     SelectComponent,
     MultiselectComponent,
     ButtonComponent,
-    PaginatorComponent
+    PaginatorComponent,
+    HeaderComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
@@ -31,6 +35,10 @@ import { PaginatorComponent } from './shared/paginator/paginator.component';
     BrowserAnimationsModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  exports: [
+    HeaderComponent,
+    NavbarComponent
+  ]
 })
 export class AppModule { }
