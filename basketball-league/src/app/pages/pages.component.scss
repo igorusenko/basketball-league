@@ -1,0 +1,37 @@
+@import 'src/variables';
+.main-layout {
+  flex-direction: column;
+  display: flex;
+  height: 100%;
+
+  app-header {
+    flex: 0;
+  }
+  .body {
+    flex: 1;
+    display: flex;
+    background: var(--ui-lightest-grey-1, #F6F6F6);
+
+    .desktop-navbar-container, app-navbar {
+      background: #FFF;
+    }
+
+    .mobile-navbar-container {
+      display: none;
+    }
+  }
+}
+
+
+@media screen and (max-width: $phone-extension){
+  .mobile-navbar-container {
+    display: block !important;
+    position: absolute;
+    height: 100%;
+    z-index: 9;
+    background: #FFF;
+  }
+  .desktop-navbar-container {
+    display: none;
+  }
+}

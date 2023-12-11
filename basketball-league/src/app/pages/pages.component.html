@@ -1,0 +1,19 @@
+<div class="main-layout">
+
+  <app-header></app-header>
+
+  <div class="body">
+    <div class="desktop-navbar-container">
+      <app-navbar></app-navbar>
+    </div>
+    <div class="mobile-navbar-container" [@slideAnimation]="headerService.isMobileNavBarOpened ? 'visible' : 'hidden'">
+      <app-navbar></app-navbar>
+    </div>
+    <div class="body-content">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+
+</div>
+
+

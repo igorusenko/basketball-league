@@ -1,0 +1,45 @@
+@import 'src/variables';
+.sign-in-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  background: #F5FBFF;
+  .sign-in-block {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    .sign-in-items {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+
+      .title-text {
+        color: #344472;
+        font-size: 36px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+      }
+      .subtitle-text {
+        text-align: center;
+      }
+    }
+  }
+
+  .bg-image {
+    flex: 1;
+  }
+}
+@media screen and (max-width: $phone-extension){
+  .sign-in-container {
+    background: #FFF;
+  }
+  .bg-image {
+    display: none;
+  }
+  .title-text {
+    text-align: center;
+  }
+}

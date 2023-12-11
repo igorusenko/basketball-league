@@ -14,31 +14,30 @@ import { ButtonComponent } from './shared/button/button.component';
 import { PaginatorComponent } from './shared/paginator/paginator.component';
 import { HeaderComponent } from './layouts/header/header.component';
 import { NavbarComponent } from './layouts/navbar/navbar.component';
+import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule, HttpHandler} from "@angular/common/http";
+import {AuthorizeGuard} from "./core/guard/auth.guard";
+import {AuthService} from "./core/services/auth.service";
+import {CommonModule} from "@angular/common";
+import {HttpInterceptor} from "./core/interceptors/http.interceptor";
 
 @NgModule({
   declarations: [
-    AppComponent,
-    UiComponent,
-    InputComponent,
-    SearchComponent,
-    SelectComponent,
-    MultiselectComponent,
-    ButtonComponent,
-    PaginatorComponent,
-    HeaderComponent,
-    NavbarComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
+    CommonModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [
+    HttpClient,
+    AuthService,
+    AuthorizeGuard,
+    { provide: HTTP_INTERCEPTORS, useClass: HttpInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent],
-  exports: [
-    HeaderComponent,
-    NavbarComponent
-  ]
 })
 export class AppModule { }

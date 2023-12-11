@@ -1,12 +1,18 @@
 <div class="custom-field">
   <label>{{label}}</label>
-  <input [id]="id"
+  <input
          [type]="type"
          [formControl]="control"
          [placeholder]="placeholder"
          [class.error]="control.touched && control.errors"
   />
-  <div *ngIf="control.touched && control.errors" class="errors-block">
+  <div *ngIf="control.touched && control.hasError('required')" class="errors-block">
     Required
+  </div>
+  <div *ngIf="control.touched && control.hasError('minlength')" class="errors-block">
+    Password must contain at least 8 characters.
+  </div>
+  <div *ngIf="control.touched && control.hasError('passwordMismatch')" class="errors-block">
+    Password and Confirm Password must match.
   </div>
 </div>
