@@ -7,15 +7,15 @@
       <app-input label="Login" [control]="signUpForm.controls.login"></app-input>
       <app-input type="Password" label="Password" [control]="signUpForm.controls.password"></app-input>
       <app-input type="password" label="Enter your password again" [control]="signUpForm.controls.samePassword"></app-input>
-      <app-button (click)="register()" [disabled]="signUpForm.invalid" name="Sign Up"></app-button>
+      <app-button (click)="register()" [disabled]="signUpForm.touched && signUpForm.invalid" name="Sign Up"></app-button>
       <input type="checkbox" class="custom-checkbox" id="agreement">
       <label for="agreement">I accept the agreement</label>
-      <p class="subtitle-text">Already a member? <a class="custom-a" [routerLink]="['/sign-in']">Sign In</a></p>
+      <p class="subtitle-text">Already a member? <a class="custom-a" [routerLink]="['/authorization/sign-in']">Sign In</a></p>
     </div>
   </div>
 
   <div class="bg-image">
-    <img src="./assets/images/sign-up-bg-image.svg" alt="">
+    <img src="../../../assets/images/sign-up-bg-image.svg" alt="">
   </div>
 
 </div>

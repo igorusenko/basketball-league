@@ -5,13 +5,13 @@
       <p class="title-text">Sign In</p>
       <app-input label="Login" [control]="signInForm.controls.login"></app-input>
       <app-input type="Password" label="Password" [control]="signInForm.controls.password"></app-input>
-      <app-button [disabled]="signInForm.invalid" (click)="login()" name="Sign In"></app-button>
-      <p class="subtitle-text">Not a member yet? <a class="custom-a" [routerLink]="['/sign-up']">Sign Up</a></p>
+      <app-button [disabled]="signInForm.touched && signInForm.invalid" (click)="login()" name="Sign In"></app-button>
+      <p class="subtitle-text">Not a member yet? <a class="custom-a" [routerLink]="['/authorization/sign-up']">Sign Up</a></p>
     </div>
   </div>
 
   <div class="bg-image">
-    <img src="./assets/images/sign-in-bg-image.svg" alt="">
+    <img src="../../../assets/images/sign-in-bg-image.svg" alt="">
   </div>
 
 </div>

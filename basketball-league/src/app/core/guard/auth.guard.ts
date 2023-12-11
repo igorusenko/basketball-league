@@ -23,7 +23,7 @@ export class AuthorizeGuard implements CanActivate {
       return true
     }
     else {
-     return this.router.navigate(['sign-in']).then(x => {
+     return this.router.navigate(['/authorization/sign-in']).then(x => {
         return false
       })
     }

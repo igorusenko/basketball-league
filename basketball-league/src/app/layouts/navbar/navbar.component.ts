@@ -15,7 +15,7 @@ export class NavbarComponent {
 
   logout(): void {
     this.authService.user = null;
-    this.router.navigate(['sign-in']).then(x => {
+    this.router.navigate(['/authorization/sign-in']).then(x => {
       localStorage.clear();
     });
   }
