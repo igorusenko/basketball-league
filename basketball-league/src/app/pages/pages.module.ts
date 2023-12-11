@@ -18,9 +18,7 @@ import { PlayersComponent } from './players/players.component';
     UiComponent,
     PagesComponent,
     HeaderComponent,
-    NavbarComponent,
-    TeamsComponent,
-    PlayersComponent
+    NavbarComponent
   ],
   imports: [
     SharedModule,
