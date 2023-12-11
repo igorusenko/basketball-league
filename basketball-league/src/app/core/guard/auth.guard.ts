@@ -19,7 +19,14 @@ export class AuthorizeGuard implements CanActivate {
       let user: UserDataInterface = JSON.parse(localStorage.getItem('user')!.toString());
       this.authService.setUser(user);
     }
-    return !!this.authService.user
+    if (this.authService.user) {
+      return true
+    }
+    else {
+     return this.router.navigate(['sign-in']).then(x => {
+        return false
+      })
+    }
   }
 
 }
