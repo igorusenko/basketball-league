@@ -1,15 +1,16 @@
-<div class="select-container">
+<div [id]="'select' + selectName" class="select-container">
+
   <div class="select-block">
     <div class="choosen-items-block">
       <p *ngFor="let item of getChoosenOptions()">
         {{item.name}}
       </p>
       <p class="placeholder" *ngIf="getChoosenOptions().length === 0">
-        Select...
+        {{placeholder}}
       </p>
     </div>
     <div class="buttons-block">
-      <div *ngIf="choosenItems.length > 0" (click)="unCheckAllOptions()" class="close-block">
+      <div *ngIf="choosenItems.length > 0 && selectName !== 'paginator'" (click)="unCheckAllOptions()" class="close-block">
         <img src="./assets/icons/close_gray.svg" alt="">
       </div>
       <img src="./assets/icons/line_horizontal.svg" alt="">
@@ -19,10 +20,12 @@
     </div>
   </div>
 
-  <div *ngIf="getDropdownState()" class="select-dropdown">
+  <div [ngStyle]="{'width': document.getElementById('select' + selectName)?.clientWidth + 'px'}"
+       *ngIf="getDropdownState()" class="select-dropdown">
     <div *ngFor="let item of options" [class.active]="isActiveOption(item)" class="dropdown-item"
          (click)="selectOption(item)">
       {{item.name}}
     </div>
   </div>
+
 </div>

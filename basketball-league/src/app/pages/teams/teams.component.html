@@ -1,2 +1,46 @@
-<router-outlet></router-outlet>
-<p>teams works!</p>
+<div class="teams-page-container">
+
+  <div class="teams-page-header">
+
+    <div class="search-block">
+      <app-search placeholder="Search..."></app-search>
+    </div>
+
+    <div class="add-block">
+      <app-button name="Add +"></app-button>
+    </div>
+
+  </div>
+
+  <ng-container *ngTemplateOutlet="teamsList && teamsList.data.length > 0 ? hasTeams : noTeams"></ng-container>
+
+  <ng-template #hasTeams>
+    <div class="teams-list">
+      <app-team-card (click)="navigateToInfoCard(team.id)" [teamInfo]="team" *ngFor="let team of teamsList.data"></app-team-card>
+    </div>
+  </ng-template>
+
+  <ng-template #noTeams>
+    <div class="no-items-block">
+      <img src="./assets/images/no-items.svg" alt="">
+      <div class="no-items-text-block">
+        <p class="no-items-title">
+          Empty here
+        </p>
+        <p class="no-items-description">
+          Add new teams to continue
+        </p>
+      </div>
+    </div>
+  </ng-template>
+
+
+  <app-paginator
+    *ngIf="Math.floor(teamsList.size / teamsList.count) > 1"
+    (onPage)="teamsService.teamsFilter.page = $event"
+    [totalCount]="Math.floor(teamsList.size / teamsList.count)"
+    [page]="teamsService.teamsFilter.page"
+    [pageSize]="teamsService.teamsFilter.pageSize"
+  ></app-paginator>
+
+</div>

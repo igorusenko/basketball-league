@@ -18,7 +18,8 @@ import {animate, state, style, transition, trigger} from "@angular/animations";
 })
 export class SelectComponent {
   @Input() multiple: boolean = false;
-  @Input() selectName: string = 'amogus';
+  @Input() selectName: string;
+  @Input() placeholder: string;
   @Input() options: Array<SelectItemInterface> = [
     {name: 'Test', id: 0, choosen: true},
     {name: 'Test1', id: 1},
@@ -67,4 +68,6 @@ export class SelectComponent {
   isActiveOption(item: SelectItemInterface): boolean {
     return this.choosenItems.some(option => option.id === item.id && option.choosen)
   }
+
+  protected readonly document = document;
 }

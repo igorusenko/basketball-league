@@ -1,17 +1,18 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {
   HttpRequest,
   HttpHandler,
   HttpEvent
 } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import {Observable} from 'rxjs';
 import {AuthService} from "../services/auth.service";
 import {UserDataInterface} from "../interfaces/user-data-interface";
 
-@Injectable()
+@Injectable({providedIn: 'root'})
 export class HttpInterceptor implements HttpInterceptor {
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService) {
+  }
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     if (!request.url.includes('/Auth/SignIn') && !request.url.includes('/Auth/SignUp')) {
@@ -23,17 +24,17 @@ export class HttpInterceptor implements HttpInterceptor {
             Authorization: `Bearer ${user.token}`,
           },
         });
-      }
-      else if (this.authService.user) {
+        return next.handle(authRequest);
+      } else if (this.authService.user) {
         const authRequest = request.clone({
           setHeaders: {
             Authorization: `Bearer ${this.authService.user.token}`,
           },
         });
+        return next.handle(authRequest);
       }
 
     }
-
-    return next.handle(request);
+      return next.handle(request);
   }
 }

@@ -13,3 +13,9 @@ export interface TeamDto {
   imageUrl: string;
   id: number;
 }
+
+export interface GetTeamsInterface {
+  name: string,
+  page: number,
+  pageSize: number
+}

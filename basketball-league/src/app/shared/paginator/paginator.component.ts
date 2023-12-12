@@ -1,5 +1,6 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {PaginatorItemInterface} from "../../core/interfaces/paginator-item.intarface";
+import {SelectItemInterface} from "../../core/interfaces/select-item.interface";
 
 @Component({
   selector: 'app-paginator',
@@ -8,18 +9,26 @@ import {PaginatorItemInterface} from "../../core/interfaces/paginator-item.intar
 })
 export class PaginatorComponent implements OnInit{
 
-  @Input() totalCount: number = 15;
+  @Input() totalCount: number;
+  @Input() page: number = 1;
+  @Input() pageSize: number = 6;
+  selectOptions: Array<SelectItemInterface> = [
+    {id: 6, name: '6'},
+    {id: 12, name: '12'},
+    {id: 24, name: '24'},
+  ]
   pages: Array<PaginatorItemInterface> = [];
   vewPageFrom: number = 0;
   vewPageTo: number = 4;
   isChoosenLastPage: boolean = false;
+  @Output() onPage: EventEmitter<number> = new EventEmitter<number>();
   constructor() {
 
   }
 
   ngOnInit() {
     for(let i: number = 1; i < this.totalCount; i++) {
-      this.pages.push({name: i, isActive: i === 1})
+      this.pages.push({name: i, isActive: i === this.page})
     }
   }
 
@@ -27,6 +36,7 @@ export class PaginatorComponent implements OnInit{
     this.isChoosenLastPage = false;
     this.unSetAllPages();
     item.isActive = true;
+    this.emitPage();
   }
 
   unSetAllPages(): void {
@@ -51,6 +61,7 @@ export class PaginatorComponent implements OnInit{
       this.isChoosenLastPage = false;
       this.getSlicedPages()[this.getSlicedPages().length - 1].isActive = true
     }
+    this.emitPage();
   }
 
   setActiveNextPage(): void {
@@ -67,6 +78,7 @@ export class PaginatorComponent implements OnInit{
         this.isChoosenLastPage = true;
         this.unselectCurrentPage();
       }
+      this.emitPage();
   }
 
   get getCurrentActivePageIndex(): number {
@@ -88,6 +100,7 @@ export class PaginatorComponent implements OnInit{
     this.pages[this.getCurrentActivePageIndex].isActive = false;
     this.vewPageFrom = this.totalCount - 5;
     this.vewPageTo = this.totalCount - 1;
+    this.emitPage();
   }
 
   viewAdditionalPages(): void {
@@ -109,4 +122,9 @@ export class PaginatorComponent implements OnInit{
   isViewLastArrayObject(): boolean {
     return this.getSlicedPages().some(x => x.name === 14)
   }
+
+  emitPage(): void {
+    this.isChoosenLastPage ? this.onPage.emit(this.pages.length + 1) : this.onPage.emit(this.pages[this.getCurrentActivePageIndex].name)
+  }
+
 }

@@ -8,6 +8,7 @@ import {Component, Input} from '@angular/core';
 export class ButtonComponent {
 
   @Input() name: string = '';
+  @Input() width: string = '';
   @Input() disabled: boolean = false;
   @Input() iconPath: string = '';
 

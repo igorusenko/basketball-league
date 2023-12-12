@@ -10,6 +10,7 @@ import { SignInComponent } from '../authorization/sign-in/sign-in.component';
 import { SignUpComponent } from '../authorization/sign-up/sign-up.component';
 import { TeamsComponent } from './teams/teams.component';
 import { PlayersComponent } from './players/players.component';
+import {TeamListResolver} from "./teams/team-list.resolver";
 
 
 
@@ -28,6 +29,9 @@ import { PlayersComponent } from './players/players.component';
   exports: [
     HeaderComponent,
     NavbarComponent
+  ],
+  providers: [
+    TeamListResolver
   ]
 })
 export class PagesModule { }
