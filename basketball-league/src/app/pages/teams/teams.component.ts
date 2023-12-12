@@ -25,7 +25,7 @@ export class TeamsComponent implements OnInit{
     })
   }
 
-  navigateToInfoCard(id: number): void {
+  navigateToInfoCard(id: number | string): void {
     this.router.navigate(['teams/' + id])
   }
 

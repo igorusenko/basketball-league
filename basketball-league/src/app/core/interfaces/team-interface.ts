@@ -1,11 +1,10 @@
-export class TeamsListInterface {
+import {IPaginatorTemplate} from "./paginator-item.intarface";
+
+export class TeamsListInterface extends IPaginatorTemplate{
   data: Array<TeamDto>;
-  count: number;
-  page: number;
-  size: number;
 }
 
-export interface TeamDto {
+export class TeamDto {
   name: string;
   foundationYear: number;
   division: string;
@@ -14,8 +13,8 @@ export interface TeamDto {
   id: number;
 }
 
-export interface GetTeamsInterface {
-  name: string,
-  page: number,
-  pageSize: number
+export class GetTeamsInterface {
+  name: string;
+  page: number;
+  pageSize: number;
 }

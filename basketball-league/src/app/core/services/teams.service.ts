@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
 import {BehaviorSubject, Observable} from "rxjs";
-import {GetTeamsInterface, TeamsListInterface} from "../interfaces/team-interface";
+import {GetTeamsInterface, TeamDto, TeamsListInterface} from "../interfaces/team-interface";
 import {environment} from "../../../environments/environment";
 
 @Injectable({
@@ -15,6 +15,9 @@ export class TeamsService {
   };
   private teams: BehaviorSubject<TeamsListInterface> = new BehaviorSubject<TeamsListInterface>(new TeamsListInterface());
   public teams$: Observable<TeamsListInterface> = this.teams.asObservable();
+
+  private team: BehaviorSubject<TeamDto> = new BehaviorSubject<TeamDto>(new TeamDto());
+  public team$: Observable<TeamDto> = this.team.asObservable();
   constructor(private http: HttpClient) { }
 
   getTeamsHandler(model: GetTeamsInterface): Observable<TeamsListInterface> {
@@ -32,6 +35,20 @@ export class TeamsService {
         next: (x) => {
           this.teams.next(x);
           resolve(x);
+        }
+      })
+    })
+  }
+
+  getTeamById(id: number): Promise<TeamDto> {
+    return new Promise((resolve, reject) => {
+      let url: string = environment.apiUrl + '/Team/Get';
+      const params = new HttpParams()
+        .set('id', id)
+      this.http.get<TeamDto>(url, {params}).subscribe({
+        next: team => {
+          this.team.next(team);
+          resolve(team);
         }
       })
     })

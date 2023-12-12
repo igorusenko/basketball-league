@@ -8,6 +8,8 @@ import {SharedModule} from "../../shared/shared.module";
 import { TeamCardComponent } from './team-card/team-card.component';
 import {TeamListResolver} from "./team-list.resolver";
 import { TeamInfoComponent } from './team-info/team-info.component';
+import {TeamsInfoResolver} from "./team-info/teams-info-resolver";
+import {PlayersListResolver} from "../players/players-list.resolver";
 
 
 
@@ -24,7 +26,8 @@ import { TeamInfoComponent } from './team-info/team-info.component';
     SharedModule,
   ],
   providers: [
-
+    TeamsInfoResolver,
+    PlayersListResolver
   ]
 })
 export class TeamsModule { }
