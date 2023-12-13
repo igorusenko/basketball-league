@@ -1,5 +1,6 @@
 import {Component, Input} from '@angular/core';
 import {TeamDto} from "../../../core/interfaces/team-interface";
+import {FileService} from "../../../core/services/image/file.service";
 
 @Component({
   selector: 'app-team-card',
@@ -10,7 +11,7 @@ export class TeamCardComponent {
 
   @Input() teamInfo: TeamDto;
 
-  constructor() {
+  constructor(public fileService: FileService) {
   }
 
 }

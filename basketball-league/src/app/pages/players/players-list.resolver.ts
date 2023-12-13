@@ -2,6 +2,7 @@ import {ActivatedRouteSnapshot, Resolve} from '@angular/router';
 import {Injectable} from "@angular/core";
 import {PlayersListInterface} from "../../core/interfaces/players-interface";
 import {PlayersService} from "../../core/services/players.service";
+import {TeamDto} from "../../core/interfaces/team-interface";
 
 @Injectable()
 export class PlayersListResolver implements Resolve<Promise<PlayersListInterface>> {

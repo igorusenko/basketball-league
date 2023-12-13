@@ -13,6 +13,6 @@ export class InputComponent {
   @Input() label: string = '';
   @Input() placeholder: string = '';
   @Input() disabled: boolean = false;
-  @Input() control: FormControl<string | null> = new FormControl<string | null>({disabled: this.disabled, value: ''}, [Validators.required]);
+  @Input() control: FormControl<string | number | null | undefined> = new FormControl<string | null>({disabled: this.disabled, value: ''}, [Validators.required]);
 
 }

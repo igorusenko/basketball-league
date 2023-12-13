@@ -1,17 +1,18 @@
-<div class="paginator-container">
+<div class="paginator-container" [ngStyle]="{justifyContent: isPaginatorVisible ? 'space-between' : 'end'}">
 
-  <div class="choose-page-block">
-    <img (click)="setActivePreviousPage()" src="./assets/icons/arrow-left.svg" alt="">
-    <p [class.active]="page.isActive"
-       *ngFor="let page of getSlicedPages()"
-       (click)="setPage(page)">{{page.name}}</p>
-    <p (click)="viewAdditionalPages()" *ngIf="!isViewLastArrayObject()">...</p>
-    <p [class.active]="isChoosenLastPage" (click)="chooseLastPage()">{{totalCount}}</p>
-    <img (click)="setActiveNextPage()" src="./assets/icons/arow-right.svg" alt="">
+  <div *ngIf="isPaginatorVisible" class="choose-page-block">
+      <img (click)="setActivePreviousPage()" src="./assets/icons/arrow-left.svg" alt="">
+      <p [class.active]="page.isActive"
+         *ngFor="let page of getSlicedPages()"
+         (click)="setPage(page)">{{page.name}}</p>
+      <p (click)="viewAdditionalPages()" *ngIf="!isViewLastArrayObject() && pages.length > 4">...</p>
+      <p [class.active]="isChoosenLastPage" (click)="chooseLastPage()">{{totalCount}}</p>
+      <img (click)="setActiveNextPage()" src="./assets/icons/arow-right.svg" alt="">
   </div>
 
-  <div class="choose-count-block">
-    <app-select placeholder="Count" selectName="paginator" [options]="selectOptions"></app-select>
+  <div *ngIf="isPageSizeSelectVisible" class="choose-count-block">
+    <app-select [control]="pageSizeControl" placeholder="Count" selectName="paginator"
+                [options]="selectOptions"></app-select>
   </div>
 
 </div>

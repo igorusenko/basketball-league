@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {FormControl, Validators} from "@angular/forms";
 
 @Component({
@@ -13,4 +13,6 @@ export class SearchComponent {
   @Input() placeholder: string = '';
   @Input() disabled: boolean = false;
   @Input() control: FormControl<string | null> = new FormControl<string | null>({disabled: this.disabled, value: ''}, [Validators.required]);
+  @Output() onEnter: EventEmitter<boolean> = new EventEmitter();
+
 }

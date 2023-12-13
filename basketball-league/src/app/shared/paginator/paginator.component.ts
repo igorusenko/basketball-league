@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {PaginatorItemInterface} from "../../core/interfaces/paginator-item.intarface";
 import {SelectItemInterface} from "../../core/interfaces/select-item.interface";
+import {FormControl} from "@angular/forms";
 
 @Component({
   selector: 'app-paginator',
@@ -10,8 +11,11 @@ import {SelectItemInterface} from "../../core/interfaces/select-item.interface";
 export class PaginatorComponent implements OnInit{
 
   @Input() totalCount: number;
+  @Input() isPageSizeSelectVisible: boolean = true;
+  @Input() isPaginatorVisible: boolean = true;
   @Input() page: number = 1;
   @Input() pageSize: number = 6;
+  @Input() pageSizeControl: FormControl<number>;
   selectOptions: Array<SelectItemInterface> = [
     {id: 6, name: '6'},
     {id: 12, name: '12'},
@@ -22,6 +26,7 @@ export class PaginatorComponent implements OnInit{
   vewPageTo: number = 4;
   isChoosenLastPage: boolean = false;
   @Output() onPage: EventEmitter<number> = new EventEmitter<number>();
+  @Output() onPageSize: EventEmitter<number> = new EventEmitter<number>();
   constructor() {
 
   }

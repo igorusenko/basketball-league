@@ -1,6 +1,8 @@
 <div class="custom-field">
   <label>{{label}}</label>
-  <input [id]="id"
+  <input
+         (keyup.enter)="onEnter.emit(true)"
+         [id]="id"
          [type]="type"
          [formControl]="control"
          [placeholder]="placeholder"

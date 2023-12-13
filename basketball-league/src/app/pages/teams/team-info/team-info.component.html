@@ -5,38 +5,38 @@
     <div class="team-info-header">
       <p>Teams / Denver Aboba</p>
       <div class="action-buttons">
-        <img src="./assets/icons/edit.svg" alt="">
-        <img src="./assets/icons/delete.svg" alt="">
+        <img [routerLink]="['edit']" src="./assets/icons/edit.svg" alt="">
+        <img (click)="deleteTeam()" src="./assets/icons/delete.svg" alt="">
       </div>
     </div>
 
     <div class="team-info-body">
 
       <div class="team-info-image">
-        <img src="./assets/images/team1.svg" alt="">
+        <img [src]="fileService.getImage(team.imageUrl!)" alt="">
       </div>
 
       <div class="team-info-details">
 
-        <p class="team-name">Denver Nuggets</p>
+        <p class="team-name">{{team.name}}</p>
 
         <div class="team-details-row">
 
           <div class="team-details">
             <p class="subtitle">Year of foundation</p>
-            <p class="info">1980</p>
+            <p class="info">{{team.foundationYear}}</p>
           </div>
 
           <div class="team-details">
             <p class="subtitle">Division</p>
-            <p class="info">Nothernwestern</p>
+            <p class="info">{{team.division}}</p>
           </div>
 
         </div>
 
         <div class="team-details">
           <p class="subtitle">Conference</p>
-          <p class="info">Western</p>
+          <p class="info">{{team.conference}}</p>
         </div>
 
       </div>
@@ -45,7 +45,7 @@
 
   </div>
 
-  <div class="team-players-list">
+  <div *ngIf="players && players.length > 0" class="team-players-list">
 
     <table>
       <thead>
@@ -61,21 +61,23 @@
       </tr>
       </thead>
       <tbody>
-      <tr>
+
+      <tr *ngFor="let player of players">
         <td>1</td>
         <td>
           <div class="player">
             <img src="./assets/images/player1.svg" alt="">
             <div class="player-info">
-              <p class="player-name">Bol Bol</p>
-              <p class="player-position">Centerforward</p>
+              <p class="player-name">{{player.name}}</p>
+              <p class="player-position">{{player.position}}</p>
             </div>
           </div>
         </td>
-        <td class="text-end">218 cm</td>
-        <td class="text-end">100 kg</td>
-        <td class="text-end">28</td>
+        <td class="text-end">{{player.height}} cm</td>
+        <td class="text-end">{{player.weight}} kg</td>
+        <td class="text-end">{{player.birthday}}</td>
       </tr>
+
       </tbody>
     </table>
 

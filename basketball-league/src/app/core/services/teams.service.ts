@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
 import {BehaviorSubject, Observable} from "rxjs";
-import {GetTeamsInterface, TeamDto, TeamsListInterface} from "../interfaces/team-interface";
+import {GetTeamsInterface, ICreateTeam, IUpdateTeam, TeamDto, TeamsListInterface} from "../interfaces/team-interface";
 import {environment} from "../../../environments/environment";
 
 @Injectable({
@@ -53,4 +53,34 @@ export class TeamsService {
       })
     })
   }
+
+  refreshTeamsList(): void {
+    this.getTeams(this.teamsFilter);
+  }
+
+  createTeam(model: ICreateTeam): Observable<TeamDto> {
+    let url: string = environment.apiUrl + '/Team/Add';
+    return this.http.post<TeamDto>(url, model)
+  }
+
+  updateTeam(model: IUpdateTeam): Observable<TeamDto> {
+    let url: string = environment.apiUrl + '/Team/Update';
+    return this.http.put<TeamDto>(url, model)
+  }
+
+  deleteTeam(id: number): Observable<TeamDto> {
+    let url: string = environment.apiUrl + '/Team/Delete?Id=' + id;
+    return this.http.delete<TeamDto>(url)
+  }
+
+  setPage(page: number): void {
+    this.teamsFilter.page = page;
+    this.refreshTeamsList();
+  }
+
+ setPageSize(pageSize: number): void {
+    this.teamsFilter.pageSize = pageSize;
+    this.refreshTeamsList();
+  }
+
 }

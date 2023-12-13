@@ -2,15 +2,15 @@
 
   <div class="select-block">
     <div class="choosen-items-block">
-      <p *ngFor="let item of getChoosenOptions()">
-        {{item.name}}
+      <p>
+        {{control.value}}
       </p>
-      <p class="placeholder" *ngIf="getChoosenOptions().length === 0">
+      <p class="placeholder" *ngIf="!control.value">
         {{placeholder}}
       </p>
     </div>
     <div class="buttons-block">
-      <div *ngIf="choosenItems.length > 0 && selectName !== 'paginator'" (click)="unCheckAllOptions()" class="close-block">
+      <div *ngIf="control.value && selectName !== 'paginator'" (click)="unCheckAllOptions()" class="close-block">
         <img src="./assets/icons/close_gray.svg" alt="">
       </div>
       <img src="./assets/icons/line_horizontal.svg" alt="">

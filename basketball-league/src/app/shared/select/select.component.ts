@@ -2,6 +2,7 @@ import {Component, HostListener, Input} from '@angular/core';
 import {SelectItemInterface} from "../../core/interfaces/select-item.interface";
 import {SelectService} from "./select.service";
 import {animate, state, style, transition, trigger} from "@angular/animations";
+import {FormControl} from "@angular/forms";
 
 @Component({
   selector: 'app-select',
@@ -20,14 +21,9 @@ export class SelectComponent {
   @Input() multiple: boolean = false;
   @Input() selectName: string;
   @Input() placeholder: string;
-  @Input() options: Array<SelectItemInterface> = [
-    {name: 'Test', id: 0, choosen: true},
-    {name: 'Test1', id: 1},
-    {name: 'Test2', id: 2},
-    {name: 'Test3', id: 3},
-    {name: 'Test4', id: 4},
-  ];
+  @Input() options: Array<SelectItemInterface>;
   @Input() choosenItems: Array<SelectItemInterface> = [];
+  @Input() control: FormControl<number | null>;
 
   constructor(public selectService: SelectService) {
 
@@ -50,23 +46,16 @@ export class SelectComponent {
   }
 
   selectOption(item: SelectItemInterface): void {
-    this.unCheckAllOptions();
-    if (!this.choosenItems.some(choosenItem => choosenItem.id === item.id)) {
-      item.choosen = true;
-      this.choosenItems.push(item);
-    } else this.choosenItems.splice(this.choosenItems.findIndex(x => x.id === item.id), 1)
+    this.control.patchValue(item.id)
   }
 
-  getChoosenOptions(): Array<SelectItemInterface> {
-    return this.choosenItems.filter(x => x.choosen);
-  }
 
   unCheckAllOptions(): void {
-    this.choosenItems = [];
+    this.control.patchValue(null)
   }
 
   isActiveOption(item: SelectItemInterface): boolean {
-    return this.choosenItems.some(option => option.id === item.id && option.choosen)
+    return this.control.value === item.id
   }
 
   protected readonly document = document;

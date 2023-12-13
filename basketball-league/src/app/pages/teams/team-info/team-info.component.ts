@@ -3,6 +3,8 @@ import {TeamsService} from "../../../core/services/teams.service";
 import {TeamDto} from "../../../core/interfaces/team-interface";
 import {PlayersService} from "../../../core/services/players.service";
 import {PlayerDto} from "../../../core/interfaces/players-interface";
+import {ActivatedRoute, Router} from "@angular/router";
+import {FileService} from "../../../core/services/image/file.service";
 
 @Component({
   selector: 'app-team-info',
@@ -12,8 +14,11 @@ import {PlayerDto} from "../../../core/interfaces/players-interface";
 export class TeamInfoComponent implements OnInit {
   team: TeamDto;
   players: Array<PlayerDto>;
+  teamId: number;
   constructor(private teamsService: TeamsService,
-              private playersService: PlayersService) {
+              private playersService: PlayersService,
+              private route: Router,
+              public fileService: FileService) {
 
   }
 
@@ -25,12 +30,20 @@ export class TeamInfoComponent implements OnInit {
   getTeamById(): void {
     this.teamsService.team$.subscribe(team => {
       this.team = team;
+      this.teamId = team.id!;
     })
   }
 
   getPlayers(): void {
     this.playersService.players$.subscribe(players => {
       this.players = players.data;
+    })
+  }
+
+  deleteTeam(): void {
+    this.teamsService.deleteTeam(this.teamId).subscribe(x => {
+      this.route.navigate(['/teams']);
+      this.teamsService.refreshTeamsList();
     })
   }
 

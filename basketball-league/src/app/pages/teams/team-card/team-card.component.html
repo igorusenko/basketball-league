@@ -1,7 +1,7 @@
 <div class="team-info-container">
 
   <div class="team-info-image-block">
-    <img src="./assets/images/team1.svg" alt="">
+    <img [src]="fileService.getImage(teamInfo.imageUrl!)" alt="">
   </div>
 
   <div class="team-info-block">

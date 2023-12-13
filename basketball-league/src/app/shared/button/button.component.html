@@ -1,4 +1,4 @@
-<button [ngStyle]="{width: width}" [disabled]="disabled" [class.disabled]="disabled" class="custom-button">
+<button [ngStyle]="{width: width}" [disabled]="disabled" [class.disabled]="disabled" [class.cancel]="cancel" class="custom-button">
   <p>{{name}}</p>
   <img *ngIf="iconPath.length > 0" [src]="iconPath" alt="">
 </button>
