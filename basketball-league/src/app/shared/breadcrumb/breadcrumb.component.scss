@@ -1,3 +1,4 @@
+@import "src/variables";
 .breadcrumbs-container {
   padding: 2rem 0 0 5rem;
   .breadcrumbs-items-list {
@@ -7,5 +8,11 @@
     .breadcrumb {
 
     }
+  }
+}
+
+@media screen and (max-width: $phone-extension){
+  .breadcrumbs-container {
+    padding: 1rem;
   }
 }
