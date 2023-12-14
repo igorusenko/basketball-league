@@ -56,7 +56,7 @@ export class MultiselectComponent {
     this.choosenItems = [];
   }
 
-  deleteChoosenOption(id: number): void {
+  deleteChoosenOption(id: number | string): void {
     this.choosenItems.splice(this.choosenItems.findIndex(option => option.id === id), 1);
   }
 

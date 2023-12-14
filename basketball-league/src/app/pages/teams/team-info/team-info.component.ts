@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {TeamsService} from "../../../core/services/teams.service";
 import {TeamDto} from "../../../core/interfaces/team-interface";
 import {PlayersService} from "../../../core/services/players.service";
-import {PlayerDto} from "../../../core/interfaces/players-interface";
+import {PlayerDto} from "../../../core/interfaces/players/players-interface";
 import {ActivatedRoute, Router} from "@angular/router";
 import {FileService} from "../../../core/services/image/file.service";
 

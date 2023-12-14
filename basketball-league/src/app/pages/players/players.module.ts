@@ -7,6 +7,7 @@ import { PlayerCardComponent } from './player-card/player-card.component';
 import { PlayerInfoComponent } from './player-info/player-info.component';
 import { PlayerNewComponent } from './player-new/player-new.component';
 import { PlayersListComponent } from './players-list/players-list.component';
+import {SharedModule} from "../../shared/shared.module";
 
 
 
@@ -18,10 +19,11 @@ import { PlayersListComponent } from './players-list/players-list.component';
     PlayerNewComponent,
     PlayersListComponent
   ],
-  imports: [
-    CommonModule,
-    RouterOutlet,
-    RouterModule.forChild(playersRoutes),
-  ]
+    imports: [
+        CommonModule,
+        RouterOutlet,
+        RouterModule.forChild(playersRoutes),
+        SharedModule,
+    ]
 })
 export class PlayersModule { }

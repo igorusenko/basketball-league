@@ -3,9 +3,9 @@
   <div class="select-block">
     <div class="choosen-items-block">
       <p>
-        {{control.value}}
+        {{choosenValue}}
       </p>
-      <p class="placeholder" *ngIf="!control.value">
+      <p class="placeholder" *ngIf="!control.value && control.value !== 0">
         {{placeholder}}
       </p>
     </div>
@@ -20,7 +20,7 @@
     </div>
   </div>
 
-  <div [ngStyle]="{'width': document.getElementById('select' + selectName)?.clientWidth + 'px'}"
+  <div [ngStyle]="{'width': document.getElementById('select' + selectName)?.clientWidth + 'px', 'bottom': selectName === 'paginator' ? '45px' : ''}"
        *ngIf="getDropdownState()" class="select-dropdown">
     <div *ngFor="let item of options" [class.active]="isActiveOption(item)" class="dropdown-item"
          (click)="selectOption(item)">

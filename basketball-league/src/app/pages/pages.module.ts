@@ -11,6 +11,7 @@ import { SignUpComponent } from '../authorization/sign-up/sign-up.component';
 import { TeamsComponent } from './teams/teams.component';
 import { PlayersComponent } from './players/players.component';
 import {TeamListResolver} from "./teams/team-list.resolver";
+import {PlayersListResolver} from "./players/players-list.resolver";
 
 
 
@@ -31,7 +32,8 @@ import {TeamListResolver} from "./teams/team-list.resolver";
     NavbarComponent
   ],
   providers: [
-    TeamListResolver
+    TeamListResolver,
+    PlayersListResolver
   ]
 })
 export class PagesModule { }

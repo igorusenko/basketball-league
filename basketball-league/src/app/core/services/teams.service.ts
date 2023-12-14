@@ -78,7 +78,7 @@ export class TeamsService {
     this.refreshTeamsList();
   }
 
- setPageSize(pageSize: number): void {
+  setPageSize(pageSize: number): void {
     this.teamsFilter.pageSize = pageSize;
     this.refreshTeamsList();
   }

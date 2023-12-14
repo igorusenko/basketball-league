@@ -1,1 +1,48 @@
-<p>player-new works!</p>
+<div class="team-new-container">
+
+  <div class="team-new-block">
+
+    <div class="team-new-header">
+    </div>
+
+    <div class="team-new-body">
+
+      <div (click)="openChooseFile()" class="add-image-block">
+        <img [src]="playerForm.value.avatarUrl ? fileService.getImage(playerForm.value.avatarUrl!) : './assets/icons/add-image.svg'" alt="">
+      </div>
+
+      <div class="team-new-fields">
+        <app-input [control]="playerForm.controls.name" placeholder="" label="Name"></app-input>
+
+        <app-select placeholder="Select..." [options]="mapPositions(positions)" [control]="playerForm.controls.position" selectName="Position"></app-select>
+        <app-select placeholder="Select..." [options]="mapTeams(teams)" [control]="playerForm.controls.team" selectName="Team"></app-select>
+
+        <div class="fields-row">
+          <app-input width="171px" type="number" placeholder="" [control]="playerForm.controls.height" label="Height (cm)"></app-input>
+          <app-input width="171px" type="number" placeholder="" [control]="playerForm.controls.weight" label="Weight (kg)"></app-input>
+        </div>
+
+        <div class="fields-row">
+          <app-input width="171px" type="date" placeholder="" [control]="playerForm.controls.birthday" label="Birthday"></app-input>
+          <app-input width="171px" type="number" placeholder="" [control]="playerForm.controls.number" label="Number"></app-input>
+        </div>
+
+
+        <div class="buttons-block">
+          <app-button [routerLink]="['/teams']" [cancel]="true" name="Cancel"></app-button>
+          <app-button [disabled]="playerForm.invalid" (click)="saveChanges()" name="Save"></app-button>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<input #fileInput
+       type="file"
+       (change)="onFileSelected($event)"
+       accept="image/*"
+       style="display: none"
+/>

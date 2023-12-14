@@ -8,10 +8,11 @@ import {FormControl, Validators} from "@angular/forms";
 })
 export class InputComponent {
 
-  @Input() type: string = '';
-  @Input() id: string = '';
-  @Input() label: string = '';
-  @Input() placeholder: string = '';
+  @Input() type: string;
+  @Input() width: string;
+  @Input() id: string;
+  @Input() label: string;
+  @Input() placeholder: string;
   @Input() disabled: boolean = false;
   @Input() control: FormControl<string | number | null | undefined> = new FormControl<string | null>({disabled: this.disabled, value: ''}, [Validators.required]);
 

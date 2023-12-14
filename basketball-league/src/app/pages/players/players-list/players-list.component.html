@@ -1,1 +1,61 @@
-<p>players-list works!</p>
+<ng-container *ngTemplateOutlet="playersList && playersList.data.length > 0 ? hasPlayers : noPlayers"></ng-container>
+
+<ng-template #hasPlayers>
+  <div class="teams-page-container">
+    <div class="teams-page-header">
+
+      <div class="search-block">
+        <app-search (onEnter)="onEnterClicked()" [control]="searchNameControl" placeholder="Search..."></app-search>
+      </div>
+
+      <div class="add-block">
+        <app-button (click)="navigateToInfoCard('new')" name="Add +"></app-button>
+      </div>
+
+    </div>
+
+    <div class="teams-list">
+<!--      <app-team-card (click)="navigateToInfoCard(team.id)" [teamInfo]="team"-->
+<!--                     *ngFor="let team of playersList.data"></app-team-card>-->
+    </div>
+
+    <app-paginator
+      [isPaginatorVisible]="playersList.count > playersList.size"
+      [isPageSizeSelectVisible]="(playersList.data.length >= pageSizeControl.value) || !(playersList.count > playersList.size) && (playersList.data.length < pageSizeControl.value)"
+      (onPage)="onPageChange($event)"
+      (onPageSize)="onPageSizeChange($event)"
+      [totalCount]="Math.ceil(playersList.count / playersList.size)"
+      [page]="teamsService.teamsFilter.page"
+      [pageSizeControl]="pageSizeControl"
+    ></app-paginator>
+  </div>
+</ng-template>
+
+<ng-template #noPlayers>
+  <div class="teams-page-container no-items">
+    <div class="teams-page-header">
+
+      <div class="search-block">
+        <app-search (onEnter)="onEnterClicked()" [control]="searchNameControl" placeholder="Search..."></app-search>
+      </div>
+
+      <div class="add-block">
+        <app-button (click)="navigateToInfoCard('new')" name="Add +"></app-button>
+      </div>
+
+    </div>
+    <div [routerLink]="['new']" class="no-items-block">
+      <img src="./assets/images/no-items.svg" alt="">
+      <div class="no-items-text-block">
+        <p class="no-items-title">
+          Empty here
+        </p>
+        <p class="no-items-description">
+          Add new teams to continue
+        </p>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+

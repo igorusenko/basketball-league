@@ -15,8 +15,8 @@ export class TeamsListComponent implements OnInit{
   pageSizeControl: FormControl = new FormControl<number>(this.teamsService.teamsFilter.pageSize);
   searchNameControl: FormControl = new FormControl<string>('')
   constructor(public teamsService: TeamsService,
-              private router: Router,
-              public fileService: FileService) {
+              private router: Router
+  ) {
 
   }
 

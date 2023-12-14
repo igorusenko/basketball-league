@@ -35,9 +35,6 @@ export class TeamNewComponent implements OnInit{
   }
 
   ngOnInit() {
-    this.router.data.forEach(x => {
-      this.breadcrumb = x['breadcrumb'];
-    })
     if (this.router.snapshot.routeConfig?.path !== 'new') {
       this.id = this.router.snapshot.params['id'];
       this.getTeamById(this.id);
