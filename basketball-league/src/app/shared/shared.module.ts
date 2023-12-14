@@ -7,6 +7,8 @@ import {ButtonComponent} from "./button/button.component";
 import {PaginatorComponent} from "./paginator/paginator.component";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {CommonModule} from "@angular/common";
+import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
+import {RouterLink} from "@angular/router";
 
 
 @NgModule({
@@ -16,20 +18,23 @@ import {CommonModule} from "@angular/common";
     SelectComponent,
     MultiselectComponent,
     ButtonComponent,
-    PaginatorComponent
+    PaginatorComponent,
+    BreadcrumbComponent
   ],
   imports: [
     ReactiveFormsModule,
     CommonModule,
-    FormsModule
+    FormsModule,
+    RouterLink
   ],
-  exports: [
-    InputComponent,
-    SearchComponent,
-    SelectComponent,
-    MultiselectComponent,
-    ButtonComponent,
-    PaginatorComponent
-  ]
+    exports: [
+        InputComponent,
+        SearchComponent,
+        SelectComponent,
+        MultiselectComponent,
+        ButtonComponent,
+        PaginatorComponent,
+        BreadcrumbComponent
+    ]
 })
 export class SharedModule { }

@@ -1,12 +1,12 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
+import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {TeamModelForm} from "../../../core/forms/team/team-model-form";
 import {FileInterface} from "../../../core/interfaces/file/file.interface";
 import {FileService} from "../../../core/services/image/file.service";
-import {mergeMap, Observable, tap} from "rxjs";
+import {Observable} from "rxjs";
 import {TeamsService} from "../../../core/services/teams.service";
 import {ICreateTeam, IUpdateTeam, TeamDto} from "../../../core/interfaces/team-interface";
-import {ActivatedRoute, ActivatedRouteSnapshot, Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-team-new',
@@ -16,24 +16,28 @@ import {ActivatedRoute, ActivatedRouteSnapshot, Router} from "@angular/router";
 export class TeamNewComponent implements OnInit{
   @ViewChild('fileInput') fileInput!: ElementRef;
   teamForm: FormGroup<TeamModelForm> = this._fb.group<TeamModelForm>({
-    name: new FormControl(''),
-    division: new FormControl(''),
-    conference: new FormControl(''),
-    foundationYear: new FormControl(null),
-    imageUrl: new FormControl(''),
+    name: new FormControl('', Validators.required),
+    division: new FormControl('', Validators.required),
+    conference: new FormControl('', Validators.required),
+    foundationYear: new FormControl(null, Validators.required),
+    imageUrl: new FormControl('', Validators.required),
   });
   maxSize = 3 * 1024 * 1024;
   viewFiles: Array<FileInterface> = [];
   team: TeamDto;
   id: number;
+  breadcrumb: string = '';
   constructor(private _fb: FormBuilder,
-              private fileService: FileService,
+              public fileService: FileService,
               private teamsService: TeamsService,
               private router: ActivatedRoute,
               private route: Router) {
   }
 
   ngOnInit() {
+    this.router.data.forEach(x => {
+      this.breadcrumb = x['breadcrumb'];
+    })
     if (this.router.snapshot.routeConfig?.path !== 'new') {
       this.id = this.router.snapshot.params['id'];
       this.getTeamById(this.id);
@@ -91,6 +95,7 @@ export class TeamNewComponent implements OnInit{
                 urlToShow:  image,
                 type: file.type,
               });
+            this.saveImage();
           }
         }
       };
@@ -104,8 +109,10 @@ export class TeamNewComponent implements OnInit{
     return mb.toFixed(2) + ' MB';
   }
 
-  saveImage(): Observable<string> {
-    return this.fileService.saveImage(this.viewFiles[0].fileToSend!)
+  saveImage(): void {
+     this.fileService.saveImage(this.viewFiles[0].fileToSend!).subscribe(imageUrl => {
+       this.teamForm.controls.imageUrl.patchValue(imageUrl)
+     })
   }
 
   saveChanges(): void {
@@ -115,14 +122,8 @@ export class TeamNewComponent implements OnInit{
       })
   }
 
-  buildRequest(): Observable<any> {
-    if (this.viewFiles[0])
-      return this.saveImage().pipe(
-        mergeMap((imageUrl: string) =>  {
-          this.teamForm.controls.imageUrl.patchValue(imageUrl);
+  buildRequest(): Observable<TeamDto> {
           return this.id ? this.teamsService.updateTeam(this.createModel()) : this.teamsService.createTeam(this.createModel())
-        }))
-    else return this.id ? this.teamsService.updateTeam(this.createModel()) : this.teamsService.createTeam(this.createModel())
   }
 
   createModel(): ICreateTeam | IUpdateTeam {

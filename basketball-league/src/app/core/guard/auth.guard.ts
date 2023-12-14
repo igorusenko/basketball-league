@@ -20,11 +20,11 @@ export class AuthorizeGuard implements CanActivate {
       this.authService.setUser(user);
     }
     if (this.authService.user) {
-      return true
+      return true;
     }
     else {
      return this.router.navigate(['/authorization/sign-in']).then(x => {
-        return false
+        return false;
       })
     }
   }

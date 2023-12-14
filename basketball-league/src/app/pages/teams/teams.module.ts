@@ -11,6 +11,7 @@ import { TeamInfoComponent } from './team-info/team-info.component';
 import {TeamsInfoResolver} from "./team-info/teams-info-resolver";
 import {PlayersListResolver} from "../players/players-list.resolver";
 import { TeamNewComponent } from './team-new/team-new.component';
+import { TeamsListComponent } from './teams-list/teams-list.component';
 
 
 
@@ -19,7 +20,8 @@ import { TeamNewComponent } from './team-new/team-new.component';
     TeamsComponent,
     TeamCardComponent,
     TeamInfoComponent,
-    TeamNewComponent
+    TeamNewComponent,
+    TeamsListComponent
   ],
   imports: [
     CommonModule,

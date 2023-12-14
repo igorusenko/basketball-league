@@ -9,7 +9,7 @@ export const pagesRoutes: Routes = [
     path: '', component: PagesComponent,
     children: [
       {path: 'ui', component: UiComponent},
-      {path: 'teams', loadChildren: () => import('./teams/teams.module').then(m => m.TeamsModule), resolve: [TeamListResolver]},
+      {path: 'teams', loadChildren: () => import('./teams/teams.module').then(m => m.TeamsModule), resolve: [TeamListResolver], data: {breadcrumb: 'Teams'}},
       {path: 'players', loadChildren: () => import('./players/players.module').then(m => m.PlayersModule)}
     ]
   },

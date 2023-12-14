@@ -3,13 +3,12 @@
   <div class="team-new-block">
 
     <div class="team-new-header">
-      <p>Teams / Add new team</p>
     </div>
 
     <div class="team-new-body">
 
       <div (click)="openChooseFile()" class="add-image-block">
-        <img [src]="viewFiles[0] ? viewFiles[0].urlToShow : './assets/icons/add-image.svg'" alt="">
+        <img [src]="teamForm.value.imageUrl ? fileService.getImage(teamForm.value.imageUrl!) : './assets/icons/add-image.svg'" alt="">
       </div>
 
       <div class="team-new-fields">
@@ -19,8 +18,8 @@
         <app-input type="number" [control]="teamForm.controls.foundationYear" label="Year of foundation"></app-input>
 
         <div class="buttons-block">
-          <app-button [cancel]="true" name="Cancel"></app-button>
-          <app-button (click)="saveChanges()" name="Save"></app-button>
+          <app-button [routerLink]="['/teams']" [cancel]="true" name="Cancel"></app-button>
+          <app-button [disabled]="teamForm.invalid" (click)="saveChanges()" name="Save"></app-button>
         </div>
       </div>
 

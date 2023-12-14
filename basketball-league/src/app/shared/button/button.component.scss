@@ -1,4 +1,5 @@
 @import 'src/variables';
+
 .custom-button {
   padding: 0 1.5rem;
   width: 100%;
@@ -27,18 +28,21 @@
     font-weight: 500;
     line-height: 24px; /* 150% */
   }
-  .disabled {
-    background-color: #F6F6F6;
-    cursor: default;
+}
 
-    p {
-      color: #D1D1D1;
-    }
+.custom-button.disabled {
+  background-color: #F6F6F6;
+  cursor: default;
+
+  p {
+    color: #D1D1D1;
   }
 }
+
 .cancel {
   background-color: #FFF;
   border: 1px solid rgb(201, 201, 201);
+
   p {
     color: #9C9C9C;
   }
@@ -50,21 +54,23 @@
   &:active {
     background-color: #9C9C9C;
     border: 1px solid #707070;
+
     p {
       color: #707070;
     }
   }
+}
 
-  .disabled {
-    background-color: #F6F6F6;
-    cursor: default;
+.cancel.disabled {
+  background-color: #F6F6F6;
+  cursor: default;
 
-    p {
-      color: #D1D1D1;
-    }
+  p {
+    color: #D1D1D1;
   }
 }
-@media screen and (max-width: $phone-extension){
+
+@media screen and (max-width: $phone-extension) {
   .bg-image {
     display: none;
   }
