@@ -15,8 +15,10 @@ export const teamsRoutes: Routes = [
     children: [
       {path: '', component: TeamsListComponent},
       {path: 'new', component: TeamNewComponent, data: {breadcrumb: 'Add new Team'}},
-      {path: ':id/edit', component: TeamNewComponent, data: {breadcrumb: 'Edit Team'}},
-      {path: ':id', component: TeamInfoComponent, resolve: [TeamsInfoResolver, PlayersListResolver], data: {breadcrumb: 'View'}},
+      {path: ':id', children: [
+          {path: 'edit', component: TeamNewComponent, data: {breadcrumb: 'Edit'}},
+          {path: '', component: TeamInfoComponent, resolve: [TeamsInfoResolver, PlayersListResolver], data: {breadcrumb: 'View'}},
+        ]},
     ]
   },
 ]

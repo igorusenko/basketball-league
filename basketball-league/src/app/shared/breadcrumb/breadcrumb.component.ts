@@ -34,7 +34,6 @@ export class BreadcrumbComponent implements OnInit {
       }
       if (this.getBreadcrumbLabel(child) && !breadcrumbs.some(x => x.label == this.getBreadcrumbLabel(child))) {
         breadcrumbs.push({label: this.getBreadcrumbLabel(child), url: url});
-        console.log(breadcrumbs)
       }
       return this.createBreadcrumbs(child, url, breadcrumbs);
     }
@@ -43,9 +42,11 @@ export class BreadcrumbComponent implements OnInit {
 
   private getBreadcrumbLabel(route: ActivatedRoute): string {
     const routeData = route.snapshot.data;
+
     if (routeData && routeData['breadcrumb']) {
       return routeData['breadcrumb'];
     }
+
     return '';
   }
 
