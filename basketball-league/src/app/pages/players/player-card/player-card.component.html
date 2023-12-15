@@ -1,1 +1,14 @@
-<p>player-card works!</p>
+<div class="team-info-container">
+
+  <div class="team-info-image-block">
+    <img [src]="fileService.getImage(playerInfo.avatarUrl!)" alt="">
+  </div>
+
+  <div class="team-info-block">
+    <div class="team-info">
+      <p class="team-name">{{playerInfo.name}} {{playerInfo.number}}</p>
+      <p class="team-foundation-year">{{teamInfo?.name}}</p>
+    </div>
+  </div>
+
+</div>

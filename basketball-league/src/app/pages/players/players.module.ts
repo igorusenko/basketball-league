@@ -8,6 +8,7 @@ import { PlayerInfoComponent } from './player-info/player-info.component';
 import { PlayerNewComponent } from './player-new/player-new.component';
 import { PlayersListComponent } from './players-list/players-list.component';
 import {SharedModule} from "../../shared/shared.module";
+import {PlayersInfoResolver} from "./player-info/players-info.resolver";
 
 
 
@@ -24,6 +25,9 @@ import {SharedModule} from "../../shared/shared.module";
         RouterOutlet,
         RouterModule.forChild(playersRoutes),
         SharedModule,
-    ]
+    ],
+  providers: [
+    PlayersInfoResolver
+  ]
 })
 export class PlayersModule { }

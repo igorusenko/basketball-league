@@ -29,17 +29,17 @@
       padding: 3rem 73px;
 
       .add-image-block {
+        align-items: end;
         background: rgb(201, 201, 201);
         //opacity: 0.5;
         border-radius: 10px;
         cursor: pointer;
         display: flex;
-        align-items: center;
         justify-content: center;
         min-width: 336px;
         min-height: 260px;
         img {
-
+          max-width: 274px;
         }
       }
 

@@ -115,7 +115,7 @@ export class TeamNewComponent implements OnInit{
   saveChanges(): void {
       this.buildRequest().subscribe(x => {
         this.teamsService.refreshTeamsList();
-        this.route.navigate(['/teams']);
+        // this.route.navigate(['/teams']);
       })
   }
 

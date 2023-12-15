@@ -6,10 +6,6 @@ import {SharedModule} from "../shared/shared.module";
 import { PagesComponent } from './pages.component';
 import {HeaderComponent} from "../layouts/header/header.component";
 import {NavbarComponent} from "../layouts/navbar/navbar.component";
-import { SignInComponent } from '../authorization/sign-in/sign-in.component';
-import { SignUpComponent } from '../authorization/sign-up/sign-up.component';
-import { TeamsComponent } from './teams/teams.component';
-import { PlayersComponent } from './players/players.component';
 import {TeamListResolver} from "./teams/team-list.resolver";
 import {PlayersListResolver} from "./players/players-list.resolver";
 

@@ -23,7 +23,8 @@ export class TeamsListComponent implements OnInit{
   ngOnInit() {
     this.getTeams();
     this.pageSizeControl.valueChanges.subscribe(pageSize => {
-      this.teamsService.setPageSize(pageSize)
+      this.teamsService.teamsFilter.pageSize = pageSize;
+      this.teamsService.setPage(1);
     })
   }
 
@@ -42,6 +43,7 @@ export class TeamsListComponent implements OnInit{
       this.teamsService.setPage(page);
   }
   onPageSizeChange(pageSize: number): void {
+    console.log(pageSize)
     if (this.teamsService.teamsFilter.pageSize !== pageSize)
       this.teamsService.setPageSize(pageSize);
   }

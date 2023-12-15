@@ -24,7 +24,6 @@ export class SelectComponent {
   @Input() options: Array<SelectItemInterface>;
   @Input() choosenItems: Array<SelectItemInterface> = [];
   @Input() control: FormControl<number | string | null | undefined>;
-  choosenValue: string;
 
   constructor(public selectService: SelectService) {
 
@@ -47,8 +46,7 @@ export class SelectComponent {
   }
 
   selectOption(item: SelectItemInterface): void {
-    this.choosenValue = item.name;
-    this.control.patchValue(item.id)
+    this.control.patchValue(item.id);
   }
 
 

@@ -1,1 +1,60 @@
-<p>player-info works!</p>
+<div class="team-info-container">
+
+  <div class="team-info-block">
+
+    <div class="team-info-header">
+      <p class="custom-a"></p>
+      <div class="action-buttons">
+        <img [routerLink]="['edit']" src="./assets/icons/edit.svg" alt="">
+        <img (click)="deletePlayer()" src="./assets/icons/delete.svg" alt="">
+      </div>
+    </div>
+
+    <div class="team-info-body">
+
+      <div class="team-info-image">
+        <img [src]="fileService.getImage(player.avatarUrl!)" alt="">
+      </div>
+
+      <div class="team-info-details">
+
+        <p class="team-name">{{player.name}}</p>
+
+        <div class="team-details-row">
+
+          <div class="team-details">
+            <p class="subtitle">Position</p>
+            <p class="info">{{player.position}}</p>
+          </div>
+
+          <div class="team-details">
+            <p class="subtitle">Team</p>
+            <p class="info">{{player.team}}</p>
+          </div>
+
+        </div>
+
+        <div class="team-details-row">
+          <div class="team-details">
+            <p class="subtitle">Height</p>
+            <p class="info">{{player.height}} cm</p>
+          </div>
+
+          <div class="team-details">
+            <p class="subtitle">Weight</p>
+            <p class="info">{{player.weight}} kg</p>
+          </div>
+        </div>
+
+        <div class="team-details">
+          <p class="subtitle">Age</p>
+          <p class="info">{{player.birthday}}</p>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

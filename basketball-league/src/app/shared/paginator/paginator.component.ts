@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
 import {PaginatorItemInterface} from "../../core/interfaces/paginator-item.intarface";
 import {SelectItemInterface} from "../../core/interfaces/select-item.interface";
 import {FormControl} from "@angular/forms";
@@ -8,7 +8,7 @@ import {FormControl} from "@angular/forms";
   templateUrl: './paginator.component.html',
   styleUrls: ['./paginator.component.scss']
 })
-export class PaginatorComponent implements OnInit{
+export class PaginatorComponent implements OnInit, OnChanges{
 
   @Input() totalCount: number;
   @Input() isPageSizeSelectVisible: boolean = true;
@@ -32,6 +32,20 @@ export class PaginatorComponent implements OnInit{
   }
 
   ngOnInit() {
+    this.refreshPages();
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['totalCount']) {
+      this.refreshPages();
+    }
+  }
+
+  refreshPages(): void {
+    this.pages = [];
+    this.vewPageFrom = 0;
+    this.vewPageTo = 4;
+    this.isChoosenLastPage = false;
     for(let i: number = 1; i < this.totalCount; i++) {
       this.pages.push({name: i, isActive: i === this.page})
     }
