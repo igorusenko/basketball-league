@@ -22,9 +22,15 @@
         display: flex;
         align-items: center;
         gap: 1rem;
-        img {
-          cursor: pointer;
+        cursor: pointer;
+
+        svg:hover {
+          transform: scale(1.1); /* Увеличение при наведении */
+          transition: 0.3s ease;
         }
+      }
+      p.custom-a span {
+        cursor: pointer;
       }
     }
 
@@ -61,6 +67,10 @@
           font-size: 36px;
           font-weight: 700;
           color: #FFF;
+
+          .custom-a {
+            color: #FF5761;
+          }
         }
 
         .team-details {
@@ -155,15 +165,16 @@
   }
 
   .team-info-image {
-    padding: 3rem 9rem !important;
+    padding-top: 2rem !important;
 
     img {
-      width: 90px;
+      width: 143px;
     }
   }
 
   .team-info-body, .team-details-row {
     flex-direction: column;
+    gap: 2rem !important;
   }
 
   .team-details, .team-info-details {
@@ -177,7 +188,8 @@
   }
 
   .team-info-details {
-    padding-bottom: 3rem;
+    padding: unset !important;
+    padding-bottom: 3rem !important;
   }
 
   .text-end {

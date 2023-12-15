@@ -22,14 +22,14 @@ export class PlayerNewComponent implements OnInit {
   @ViewChild('fileInput') fileInput!: ElementRef;
 
   playerForm: FormGroup<PlayerModelForm> = this._fb.group<PlayerModelForm>({
-    name: new FormControl(''),
-    number: new FormControl(null),
-    avatarUrl: new FormControl(''),
-    birthday: new FormControl(''),
-    height: new FormControl(null),
-    position: new FormControl(''),
-    team: new FormControl(null),
-    weight: new FormControl(null)
+    name: new FormControl('', Validators.required),
+    number: new FormControl(null, [Validators.required, Validators.pattern('^[0-9]+$')]),
+    avatarUrl: new FormControl('', Validators.required),
+    birthday: new FormControl('', Validators.required),
+    height: new FormControl(null, [Validators.required, Validators.pattern('^[0-9]+$')]),
+    position: new FormControl('', Validators.required),
+    weight: new FormControl(null, [Validators.required, Validators.pattern('^[0-9]+$')]),
+    team: new FormControl(null, Validators.required),
   });
 
   maxSize = 3 * 1024 * 1024;

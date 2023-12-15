@@ -9,10 +9,9 @@
     border-radius: 4px 4px 0 0;
     background: linear-gradient(#707070, #393939);
     align-items: end;
-    min-height: 280px;
     img {
-      max-width: 274px;
-      //height: 150px;
+      max-width: 165px;
+      height: 150px;
       object-fit: cover;
       //padding: 65px 107px;
     }
@@ -26,11 +25,15 @@
       align-items: center;
       flex-direction: column;
       gap: 12px;
-      padding: 24px 96px;
+      padding: 0.5rem 0;
 
       .team-name {
         font-size: 18px;
         color: #FFF;
+
+        .custom-a {
+          color: #FF5761;
+        }
       }
 
       .team-foundation-year {

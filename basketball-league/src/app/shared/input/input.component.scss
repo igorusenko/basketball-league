@@ -1,3 +1,4 @@
+@import "src/variables";
 .custom-field {
   width: 364px;
   max-width: 364px;
@@ -42,4 +43,11 @@
 
 .errors-block {
   color: red;
+}
+
+@media screen and (max-width: $phone-extension){
+  .custom-field {
+    width: 330px;
+    max-width: 330px;
+  }
 }

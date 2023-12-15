@@ -8,6 +8,7 @@ import {HeaderComponent} from "../layouts/header/header.component";
 import {NavbarComponent} from "../layouts/navbar/navbar.component";
 import {TeamListResolver} from "./teams/team-list.resolver";
 import {PlayersListResolver} from "./players/players-list.resolver";
+import {NgIf, NgStyle} from "@angular/common";
 
 
 
@@ -22,6 +23,8 @@ import {PlayersListResolver} from "./players/players-list.resolver";
     SharedModule,
     RouterOutlet,
     RouterModule.forChild(pagesRoutes),
+    NgStyle,
+    NgIf,
   ],
   exports: [
     HeaderComponent,

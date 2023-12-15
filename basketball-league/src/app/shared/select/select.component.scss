@@ -1,3 +1,4 @@
+@import "src/variables";
 .select-container {
   transition: all 0.3s ease;
   position: relative;
@@ -87,4 +88,10 @@
 .active {
   background-color: #C60E2E !important;
   color: #FFF !important;
+}
+
+@media screen and (max-width: $phone-extension){
+  .select-container {
+    max-width: 330px !important;
+  }
 }

@@ -5,6 +5,7 @@
          [formControl]="control"
          [placeholder]="placeholder"
          [class.error]="control.touched && control.errors"
+         [maxlength]="maxLength"
   />
   <div *ngIf="control.touched && control.hasError('required')" class="errors-block">
     Required
@@ -14,5 +15,8 @@
   </div>
   <div *ngIf="control.touched && control.hasError('passwordMismatch')" class="errors-block">
     Password and Confirm Password must match.
+  </div>
+  <div *ngIf="control.touched && control.hasError('pattern')" class="errors-block">
+    Only numbers.
   </div>
 </div>

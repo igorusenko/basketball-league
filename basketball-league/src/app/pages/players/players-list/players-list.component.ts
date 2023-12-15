@@ -18,7 +18,7 @@ export class PlayersListComponent implements OnInit{
   searchNameControl: FormControl = new FormControl<string>('')
   constructor(public teamsService: TeamsService,
               private router: Router,
-              private playersService: PlayersService
+              public playersService: PlayersService
               ) {
 
   }

@@ -8,7 +8,8 @@ import {Router} from "@angular/router";
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent {
-
+  hoveredTeams: boolean = false;
+  hoveredPlayers: boolean = false;
   constructor(private authService: AuthService,
               private router: Router) {
   }

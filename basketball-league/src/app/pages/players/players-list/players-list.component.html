@@ -14,7 +14,7 @@
 
     </div>
 
-    <div class="teams-list">
+    <div class="teams-list-default" [ngClass]="{'teams-list-three-rows': pageSizeControl.value === 12, 'teams-list-five-rows': pageSizeControl.value === 24}">
       <app-player-card (click)="navigateToInfoCard(player.id)" [playerInfo]="player"
                      *ngFor="let player of playersList.data"></app-player-card>
     </div>
@@ -23,7 +23,7 @@
       [isPaginatorVisible]="playersList.count > playersList.size"
       [isPageSizeSelectVisible]="(playersList.data.length >= pageSizeControl.value) || !(playersList.count > playersList.size) && (playersList.data.length < pageSizeControl.value)"
       (onPage)="onPageChange($event)"
-      [totalCount]="Math.ceil(playersList.count / playersList.size)"
+      [totalCount]="Math.ceil(playersList.count / playersService.playersFilter.pageSize)"
       [page]="teamsService.teamsFilter.page"
       [pageSizeControl]="pageSizeControl"
     ></app-paginator>

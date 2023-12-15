@@ -2,6 +2,8 @@
 .teams-page-container {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+  flex: 1;
   //align-items: center;
   gap: 2rem;
   margin: 2rem 5rem;
@@ -21,15 +23,28 @@
     }
   }
 
-  .teams-list {
+  .teams-list-default {
     display: grid;
     grid-template-rows: auto auto;
     grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
+    gap: 0.5rem;
 
-    app-team-card {
+    app-player-card {
       cursor: pointer;
     }
+    app-player-card:hover {
+      transform: scale(1.01); /* Увеличение при наведении */
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Подсветка тени при наведении */
+      transition: 0.3s ease
+    }
+  }
+
+  .teams-list-three-rows {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .teams-list-five-rows {
+    grid-template-columns: repeat(6, 1fr);
   }
 
   .no-items-block {
@@ -74,7 +89,7 @@
   .teams-page-container {
     margin: 0;
   }
-  .teams-list {
+  .teams-list-default {
     grid-template-rows: auto auto auto !important;
     grid-template-columns: repeat(2, 1fr) !important;
     place-items: center !important;
@@ -84,4 +99,8 @@
   app-paginator {
     padding: 0 1rem 0.75rem 1rem;
   }
+}
+::ng-deep app-players-list {
+  display: flex;
+  flex: 1;
 }

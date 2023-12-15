@@ -31,6 +31,11 @@
     app-team-card {
       cursor: pointer;
     }
+    app-team-card:hover {
+      transform: scale(1.01); /* Увеличение при наведении */
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Подсветка тени при наведении */
+      transition: 0.3s ease
+    }
   }
 
   .teams-list-three-rows {
@@ -38,7 +43,7 @@
   }
 
   .teams-list-five-rows {
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(6, 1fr);
   }
 
   .no-items-block {
@@ -75,7 +80,10 @@
 }
 @media screen and (max-width: $phone-extension){
   .teams-list-default {
+    grid-template-rows: auto auto auto !important;
     grid-template-columns: repeat(2, 1fr) !important;
+    place-items: center !important;
+    gap: 12px !important;
   }
   .teams-page-header {
     flex-direction: column;

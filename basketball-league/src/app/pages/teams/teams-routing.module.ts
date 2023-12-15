@@ -7,13 +7,19 @@ import {TeamNewComponent} from "./team-new/team-new.component";
 import {TeamsListComponent} from "./teams-list/teams-list.component";
 
 export const teamsRoutes: Routes = [
-  {
-    path: '', component: TeamsListComponent},
+  {path: '', component: TeamsListComponent},
   {path: 'new', component: TeamNewComponent, data: {breadcrumb: 'Add new Team'}},
-  {path: ':id', children: [
+  {
+    path: ':id', children: [
       {path: 'edit', component: TeamNewComponent, data: {breadcrumb: 'Edit'}},
-      {path: '', component: TeamInfoComponent, resolve: [TeamsInfoResolver, PlayersListResolver], data: {breadcrumb: 'View'}},
-    ]},
+      {
+        path: '',
+        component: TeamInfoComponent,
+        resolve: [TeamsInfoResolver, PlayersListResolver],
+        data: {breadcrumb: 'View'}
+      },
+    ]
+  },
 ]
 
 @NgModule({

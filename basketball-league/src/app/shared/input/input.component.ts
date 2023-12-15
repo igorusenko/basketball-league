@@ -1,5 +1,6 @@
 import {Component, Input} from '@angular/core';
 import {FormControl, Validators} from "@angular/forms";
+import {max} from "rxjs";
 
 @Component({
   selector: 'app-input',
@@ -9,6 +10,8 @@ import {FormControl, Validators} from "@angular/forms";
 export class InputComponent {
 
   @Input() type: string;
+  @Input() maxLength: number = 50;
+  @Input() max: number;
   @Input() width: string;
   @Input() id: string;
   @Input() label: string;

@@ -1,3 +1,4 @@
+@import "src/variables";
 .team-new-container {
 
   .team-new-block {
@@ -64,5 +65,16 @@
         }
       }
     }
+  }
+}
+
+@media screen and (max-width: $phone-extension){
+  .team-new-block {
+    padding: 0 !important;
+    padding-top: 1rem !important;
+  }
+  .team-new-body {
+    flex-direction: column;
+    padding: 1.5rem !important;
   }
 }

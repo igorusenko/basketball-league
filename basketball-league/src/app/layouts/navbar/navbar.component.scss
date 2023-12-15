@@ -34,9 +34,11 @@
   align-items: center;
   gap: 0.5rem;
   cursor: pointer;
-
   p {
     font-size: 12px;
+    :hover {
+      transition: 0.3s ease
+    }
   }
 
   p.gray {
@@ -50,6 +52,10 @@
   img {
     width: 24px;
   }
+}
+.nav-item:hover {
+  transform: scale(1.1); /* Увеличение при наведении */
+  transition: 0.3s ease;
 }
 @media screen and (max-width: $phone-extension){
 

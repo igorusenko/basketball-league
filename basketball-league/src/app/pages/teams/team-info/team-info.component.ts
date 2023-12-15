@@ -15,6 +15,8 @@ export class TeamInfoComponent implements OnInit {
   team: TeamDto;
   players: Array<PlayerDto>;
   teamId: number;
+  hoveredEdit: boolean = false;
+  hoveredDelete: boolean = false;
   constructor(private teamsService: TeamsService,
               private playersService: PlayersService,
               private route: Router,
