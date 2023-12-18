@@ -33,6 +33,7 @@ export class SignUpComponent implements OnInit{
       password: new FormControl<string>('', [Validators.required, Validators.minLength(8)]),
       samePassword: new FormControl<string>('', [Validators.required, samePasswordValidator('password')]),
       userName: new FormControl<string>('', Validators.required),
+      isAcceptedPrivacy: new FormControl<boolean>(false, Validators.required)
     })
   }
 

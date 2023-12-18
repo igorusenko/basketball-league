@@ -1,6 +1,6 @@
 <div [ngStyle]="{'width': width ? width : '364px', 'max-width': width}" class="custom-field">
   <label *ngIf="label">{{label}}</label>
-  <input
+  <input autocomplete="false"
          [type]="type"
          [formControl]="control"
          [placeholder]="placeholder"

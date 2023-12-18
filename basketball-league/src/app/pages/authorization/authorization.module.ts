@@ -5,6 +5,7 @@ import {SignUpComponent} from "./sign-up/sign-up.component";
 import {SharedModule} from "../../shared/shared.module";
 import {RouterModule} from "@angular/router";
 import {authRoutes} from "./authorization-routing.module";
+import {ReactiveFormsModule} from "@angular/forms";
 
 
 
@@ -16,7 +17,8 @@ import {authRoutes} from "./authorization-routing.module";
   imports: [
     CommonModule,
     SharedModule,
-    RouterModule.forChild(authRoutes)
+    RouterModule.forChild(authRoutes),
+    ReactiveFormsModule
   ]
 })
 export class AuthorizationModule { }

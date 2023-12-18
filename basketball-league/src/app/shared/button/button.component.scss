@@ -12,7 +12,7 @@
   max-width: 364px;
   cursor: pointer;
 
-  &:hover {
+  &:hover:not(.disabled) {
     background-color: #FF5761;
       transform: scale(1.01); /* Увеличение при наведении */
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Подсветка тени при наведении */
@@ -42,7 +42,7 @@
   }
 }
 
-.cancel {
+.cancel:not(.disabled) {
   background-color: #FFF;
   border: 1px solid rgb(201, 201, 201);
 
