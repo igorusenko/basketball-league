@@ -61,11 +61,19 @@ input.custom-checkbox:focus+label::before {
 }
 /* стили для чекбокса, находящегося в фокусе и не находящегося в состоянии checked */
 input.custom-checkbox:focus:not(:checked)+label::before {
-  border-color: #E4163A;
+  //border-color: #E4163A;
 }
 /* стили для чекбокса, находящегося в состоянии disabled */
 input.custom-checkbox:disabled+label::before {
   background-color: #D1D1D1;
+}
+.checkbox-error {
+  input.custom-checkbox+label::before {
+    border-color: #E4163A;
+  }
+}
+.checkbox-text-error {
+  color: #FF768E;
 }
 .custom-a {
   color: #E4163A;

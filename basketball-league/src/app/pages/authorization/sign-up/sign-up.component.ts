@@ -15,7 +15,7 @@ import {NotificationService} from "../../../core/services/notification/notificat
 export class SignUpComponent implements OnInit{
 
   signUpForm: FormGroup<SignUpForm>;
-
+  isSubmitted: boolean = false;
   constructor(private authService: AuthService,
               private _fb: FormBuilder,
               private router: Router,
@@ -46,6 +46,8 @@ export class SignUpComponent implements OnInit{
   }
 
   register(): void {
+    this.isSubmitted = true;
+    if (this.signUpForm.valid)
     this.authService.register(this.createModel).subscribe({
       next: value => {
         if (value.token) {
