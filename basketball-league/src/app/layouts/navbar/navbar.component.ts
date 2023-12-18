@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import {AuthService} from "../../core/services/auth.service";
+import {AuthService} from "../../core/services/authorization/auth.service";
 import {Router} from "@angular/router";
+import {HeaderService} from "../../core/services/header/header.service";
 
 @Component({
   selector: 'app-navbar',
@@ -11,7 +12,8 @@ export class NavbarComponent {
   hoveredTeams: boolean = false;
   hoveredPlayers: boolean = false;
   constructor(private authService: AuthService,
-              private router: Router) {
+              private router: Router,
+              public headerService: HeaderService) {
   }
 
   logout(): void {

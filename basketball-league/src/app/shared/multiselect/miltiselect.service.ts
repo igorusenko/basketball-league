@@ -13,8 +13,8 @@ export class MiltiselectService {
       return
     }
     if (!this.activeDropdowns.some((x: string) => x === name)) {
-      this.activeDropdowns = []
-      this.activeDropdowns.push(name)
+      this.activeDropdowns = [];
+      this.activeDropdowns.push(name);
     }
     else if (this.activeDropdowns.length > 0) this.activeDropdowns.splice(this.activeDropdowns.findIndex(x => x == name), 1);
   }

@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
 import {BehaviorSubject, Observable} from "rxjs";
-import {GetTeamsInterface, ICreateTeam, IUpdateTeam, TeamDto, TeamsListInterface} from "../interfaces/team-interface";
-import {environment} from "../../../environments/environment";
+import {GetTeamsInterface, ICreateTeam, IUpdateTeam, TeamDto, TeamsListInterface} from "../../interfaces/teams/team-interface";
+import {environment} from "../../../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
@@ -40,7 +40,7 @@ export class TeamsService {
     })
   }
 
-  getTeamById(id: number): Promise<TeamDto> {
+  getTeamById(id: number | string): Promise<TeamDto> {
     return new Promise((resolve, reject) => {
       let url: string = environment.apiUrl + '/Team/Get';
       const params = new HttpParams()

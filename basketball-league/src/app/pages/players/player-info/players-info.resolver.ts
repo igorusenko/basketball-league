@@ -1,9 +1,9 @@
 import {Injectable} from "@angular/core";
 import {ActivatedRouteSnapshot, Resolve} from "@angular/router";
 import {PlayerDto} from "../../../core/interfaces/players/players-interface";
-import {TeamsService} from "../../../core/services/teams.service";
-import {PlayersService} from "../../../core/services/players.service";
-import {TeamDto} from "../../../core/interfaces/team-interface";
+import {TeamsService} from "../../../core/services/teams/teams.service";
+import {PlayersService} from "../../../core/services/players/players.service";
+import {TeamDto} from "../../../core/interfaces/teams/team-interface";
 
 @Injectable()
 

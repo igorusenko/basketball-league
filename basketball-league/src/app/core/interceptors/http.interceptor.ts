@@ -2,16 +2,17 @@ import {Injectable} from '@angular/core';
 import {
   HttpRequest,
   HttpHandler,
-  HttpEvent
+  HttpEvent, HttpErrorResponse
 } from '@angular/common/http';
-import {Observable} from 'rxjs';
-import {AuthService} from "../services/auth.service";
-import {UserDataInterface} from "../interfaces/user-data-interface";
+import {catchError, Observable, throwError} from 'rxjs';
+import {AuthService} from "../services/authorization/auth.service";
+import {UserDataInterface} from "../interfaces/authorization/user-data-interface";
+import {Router} from "@angular/router";
 
 @Injectable({providedIn: 'root'})
 export class HttpInterceptor implements HttpInterceptor {
 
-  constructor(private authService: AuthService) {
+  constructor(private authService: AuthService, private router: Router) {
   }
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
@@ -24,17 +25,27 @@ export class HttpInterceptor implements HttpInterceptor {
             Authorization: `Bearer ${user.token}`,
           },
         });
-        return next.handle(authRequest);
+        return this.requestHandler(next, authRequest);
       } else if (this.authService.user) {
         const authRequest = request.clone({
           setHeaders: {
             Authorization: `Bearer ${this.authService.user.token}`,
           },
         });
-        return next.handle(authRequest);
+        return this.requestHandler(next, authRequest);
       }
-
     }
-      return next.handle(request);
+      return this.requestHandler(next, request);
+  }
+
+  requestHandler(next: HttpHandler, request: HttpRequest<any>): Observable<HttpEvent<unknown>> {
+    return next.handle(request).pipe(
+      catchError((error: HttpErrorResponse) => {
+        if (error.status === 401) {
+          this.router.navigate(['/authorization/sign-in']);
+        }
+        return throwError(error);
+      })
+    );
   }
 }

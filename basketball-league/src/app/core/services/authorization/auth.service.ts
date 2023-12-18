@@ -1,10 +1,10 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
-import {SignInInterface} from "../interfaces/sign-in-interface";
-import {environment} from "../../../environments/environment";
-import {SignUpInterface} from "../interfaces/sign-up-interface";
-import {UserDataInterface} from "../interfaces/user-data-interface";
+import {SignInInterface} from "../../interfaces/authorization/sign-in-interface";
+import {environment} from "../../../../environments/environment";
+import {SignUpInterface} from "../../interfaces/authorization/sign-up-interface";
+import {UserDataInterface} from "../../interfaces/authorization/user-data-interface";
 
 @Injectable({
   providedIn: 'root'

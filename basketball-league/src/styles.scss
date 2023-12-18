@@ -70,3 +70,21 @@ input.custom-checkbox:disabled+label::before {
 .custom-a {
   color: #E4163A;
 }
+.notification {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  color: #fff;
+  font-size: 16px;
+  z-index: 9999;
+}
+
+.success {
+  background-color: #28a745; /* Зеленый цвет для успешных уведомлений */
+}
+
+.error {
+  background-color: #FF5761;
+}

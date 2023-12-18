@@ -1,8 +1,8 @@
 import {ActivatedRouteSnapshot, Resolve} from '@angular/router';
 import {Injectable} from "@angular/core";
-import {TeamDto} from "../../../core/interfaces/team-interface";
-import {TeamsService} from "../../../core/services/teams.service";
-import {PlayersService} from "../../../core/services/players.service";
+import {TeamDto} from "../../../core/interfaces/teams/team-interface";
+import {TeamsService} from "../../../core/services/teams/teams.service";
+import {PlayersService} from "../../../core/services/players/players.service";
 
 @Injectable()
 export class TeamsInfoResolver implements Resolve<Promise<TeamDto>> {

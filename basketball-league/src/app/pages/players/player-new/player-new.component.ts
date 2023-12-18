@@ -2,16 +2,16 @@ import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {TeamModelForm} from "../../../core/forms/team/team-model-form";
 import {FileInterface} from "../../../core/interfaces/file/file.interface";
-import {ICreateTeam, IUpdateTeam, TeamDto} from "../../../core/interfaces/team-interface";
+import {ICreateTeam, IUpdateTeam, TeamDto} from "../../../core/interfaces/teams/team-interface";
 import {FileService} from "../../../core/services/image/file.service";
-import {TeamsService} from "../../../core/services/teams.service";
+import {TeamsService} from "../../../core/services/teams/teams.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Observable} from "rxjs";
 import {PlayerModelForm} from "../../../core/forms/player/player-model-form";
 import {ICreatePlayer, IUpdatePlayer, PlayerDto} from "../../../core/interfaces/players/players-interface";
-import {PlayersService} from "../../../core/services/players.service";
+import {PlayersService} from "../../../core/services/players/players.service";
 import {PositionsDto} from "../../../core/interfaces/postitions/positions-interface";
-import {SelectItemInterface} from "../../../core/interfaces/select-item.interface";
+import {SelectItemInterface} from "../../../core/interfaces/select/select-item.interface";
 
 @Component({
   selector: 'app-player-new',
@@ -25,11 +25,11 @@ export class PlayerNewComponent implements OnInit {
     name: new FormControl('', Validators.required),
     number: new FormControl(null, [Validators.required, Validators.pattern('^[0-9]+$')]),
     avatarUrl: new FormControl('', Validators.required),
-    birthday: new FormControl('', Validators.required),
+    birthday: new FormControl(new Date(), Validators.required),
     height: new FormControl(null, [Validators.required, Validators.pattern('^[0-9]+$')]),
-    position: new FormControl('', Validators.required),
+    position: new FormControl({id: null, name: null}, Validators.required),
     weight: new FormControl(null, [Validators.required, Validators.pattern('^[0-9]+$')]),
-    team: new FormControl(null, Validators.required),
+    team: new FormControl({id: null, name: null}, Validators.required),
   });
 
   maxSize = 3 * 1024 * 1024;
@@ -75,8 +75,8 @@ export class PlayerNewComponent implements OnInit {
       height: this.player.height,
       name: this.player.name,
       number: this.player.number,
-      position: this.player.position,
-      team: this.player.team,
+      position: {id: this.player.position, name: this.player.position},
+      team: {id: this.player.team, name: this.teams.find(x => x.id === this.player.team)?.name},
       weight: this.player.weight
     })
   }
@@ -157,8 +157,8 @@ export class PlayerNewComponent implements OnInit {
     return  {
       name: this.playerForm.value.name,
       number: this.playerForm.value.number,
-      position: this.playerForm.value.position,
-      team: this.playerForm.value.team,
+      position: this.playerForm.value.position?.id,
+      team: this.playerForm.value.team?.id,
       birthday: this.playerForm.value.birthday,
       height: this.playerForm.value.height,
       weight: this.playerForm.value.weight,

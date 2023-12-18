@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {TeamDto} from "../../../core/interfaces/team-interface";
+import {TeamDto} from "../../../core/interfaces/teams/team-interface";
 import {FileService} from "../../../core/services/image/file.service";
 
 @Component({

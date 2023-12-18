@@ -1,5 +1,5 @@
 import {RouterModule, Routes} from "@angular/router";
-import {UiComponent} from "../ui/ui.component";
+import {UiComponent} from "./ui/ui.component";
 import {NgModule} from "@angular/core";
 import {PagesComponent} from "./pages.component";
 import {TeamListResolver} from "./teams/team-list.resolver";

@@ -1,8 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {TeamDto} from "../../../core/interfaces/team-interface";
+import {TeamDto} from "../../../core/interfaces/teams/team-interface";
 import {FileService} from "../../../core/services/image/file.service";
 import {PlayerDto} from "../../../core/interfaces/players/players-interface";
-import {TeamsService} from "../../../core/services/teams.service";
+import {TeamsService} from "../../../core/services/teams/teams.service";
 import {Observable} from "rxjs";
 
 @Component({

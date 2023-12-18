@@ -1,4 +1,4 @@
-import {IPaginatorTemplate} from "./paginator-item.intarface";
+import {IPaginatorTemplate} from "../paginator/paginator-item.intarface";
 
 export class TeamsListInterface extends IPaginatorTemplate {
   data: Array<TeamDto>;

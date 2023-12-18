@@ -30,6 +30,7 @@
       padding: 3rem 73px;
 
       .add-image-block {
+        position: relative;
         align-items: end;
         background: rgb(201, 201, 201);
         //opacity: 0.5;
@@ -42,6 +43,12 @@
         img {
           max-width: 274px;
         }
+        .overlay-image {
+          position: absolute;
+          top: 100px;
+          z-index: 1; /* Устанавливаем z-index больше, чем у нижней картинки, чтобы поверх неё */
+        }
+
       }
 
       .team-new-fields {
@@ -62,6 +69,7 @@
         .fields-row {
           display: flex;
           gap: 1.5rem;
+
         }
       }
     }
@@ -76,5 +84,6 @@
   .team-new-body {
     flex-direction: column;
     padding: 1.5rem !important;
+    gap: 3rem !important;
   }
 }

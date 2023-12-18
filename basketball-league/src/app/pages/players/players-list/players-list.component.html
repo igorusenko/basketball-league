@@ -1,22 +1,25 @@
-<ng-container *ngTemplateOutlet="playersList && playersList.data.length > 0 ? hasPlayers : noPlayers"></ng-container>
+<div class="teams-page-container" [class.no-items]="playersList.data.length === 0">
+  <div class="teams-page-header">
 
-<ng-template #hasPlayers>
-  <div class="teams-page-container">
-    <div class="teams-page-header">
-
-      <div class="search-block">
-        <app-search (onEnter)="onEnterClicked()" [control]="searchNameControl" placeholder="Search..."></app-search>
-      </div>
-
-      <div class="add-block">
-        <app-button (click)="navigateToInfoCard('new')" name="Add +"></app-button>
-      </div>
-
+    <div class="search-block">
+      <app-search (onEnter)="onEnterClicked()" [control]="searchNameControl" placeholder="Search..."></app-search>
+      <app-multiselect [multiple]="true" [options]="getMappedTeams()" [control]="teamsControl" selectName="teams"></app-multiselect>
     </div>
 
-    <div class="teams-list-default" [ngClass]="{'teams-list-three-rows': pageSizeControl.value === 12, 'teams-list-five-rows': pageSizeControl.value === 24}">
+    <div class="add-block">
+      <app-button (click)="navigateToInfoCard('new')" name="Add +"></app-button>
+    </div>
+
+  </div>
+
+  <ng-container *ngTemplateOutlet="playersList && playersList.data.length > 0 ? hasPlayers : noPlayers"></ng-container>
+</div>
+
+<ng-template #hasPlayers>
+    <div class="teams-list-default"
+         [ngClass]="{'teams-list-three-rows': pageSizeControl.value === 12, 'teams-list-five-rows': pageSizeControl.value === 24}">
       <app-player-card (click)="navigateToInfoCard(player.id)" [playerInfo]="player"
-                     *ngFor="let player of playersList.data"></app-player-card>
+                       *ngFor="let player of playersList.data"></app-player-card>
     </div>
 
     <app-paginator
@@ -24,25 +27,12 @@
       [isPageSizeSelectVisible]="(playersList.data.length >= pageSizeControl.value) || !(playersList.count > playersList.size) && (playersList.data.length < pageSizeControl.value)"
       (onPage)="onPageChange($event)"
       [totalCount]="Math.ceil(playersList.count / playersService.playersFilter.pageSize)"
-      [page]="teamsService.teamsFilter.page"
+      [page]="playersService.playersFilter.page"
       [pageSizeControl]="pageSizeControl"
     ></app-paginator>
-  </div>
 </ng-template>
 
 <ng-template #noPlayers>
-  <div class="teams-page-container no-items">
-    <div class="teams-page-header">
-
-      <div class="search-block">
-        <app-search (onEnter)="onEnterClicked()" [control]="searchNameControl" placeholder="Search..."></app-search>
-      </div>
-
-      <div class="add-block">
-        <app-button (click)="navigateToInfoCard('new')" name="Add +"></app-button>
-      </div>
-
-    </div>
     <div [routerLink]="['new']" class="no-items-block">
       <img src="./assets/images/no-items.svg" alt="">
       <div class="no-items-text-block">
@@ -50,11 +40,10 @@
           Empty here
         </p>
         <p class="no-items-description">
-          Add new teams to continue
+          Add new players to continue
         </p>
       </div>
     </div>
-  </div>
 </ng-template>
 
 

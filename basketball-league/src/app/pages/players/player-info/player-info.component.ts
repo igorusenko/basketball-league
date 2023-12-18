@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {PlayerDto} from "../../../core/interfaces/players/players-interface";
-import {PlayersService} from "../../../core/services/players.service";
+import {PlayersService} from "../../../core/services/players/players.service";
 import {FileService} from "../../../core/services/image/file.service";
 import {Router} from "@angular/router";
 

@@ -1,9 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
-import {SignUpForm} from "../../core/forms/sign-up-form";
-import {AuthService} from "../../core/services/auth.service";
-import {SignUpInterface} from "../../core/interfaces/sign-up-interface";
-import {samePasswordValidator} from "../../core/forms/validators/same-password-validator";
+import {SignUpForm} from "../../../core/forms/authorization/sign-up-form";
+import {AuthService} from "../../../core/services/authorization/auth.service";
+import {SignUpInterface} from "../../../core/interfaces/authorization/sign-up-interface";
+import {samePasswordValidator} from "../../../core/forms/validators/same-password-validator";
+import {Router} from "@angular/router";
+import {NotificationService} from "../../../core/services/notification/notification.service";
 
 @Component({
   selector: 'app-sign-up',
@@ -15,7 +17,9 @@ export class SignUpComponent implements OnInit{
   signUpForm: FormGroup<SignUpForm>;
 
   constructor(private authService: AuthService,
-              private _fb: FormBuilder) {
+              private _fb: FormBuilder,
+              private router: Router,
+              private notify: NotificationService) {
 
   }
 
@@ -41,8 +45,19 @@ export class SignUpComponent implements OnInit{
   }
 
   register(): void {
-    this.authService.register(this.createModel).subscribe(x => {
-
+    this.authService.register(this.createModel).subscribe({
+      next: value => {
+        if (value.token) {
+          this.authService.setUser(value);
+          this.router.navigate(['teams'])
+        }
+      },
+      complete: () => {
+        this.notify.showSuccess('Authentication successful!')
+      },
+      error: error => {
+        this.notify.showError('User with the specified username / password was not found.')
+      }
     })
   }
 

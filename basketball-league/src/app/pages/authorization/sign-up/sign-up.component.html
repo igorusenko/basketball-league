@@ -3,10 +3,10 @@
   <div class="sign-in-block">
     <div class="sign-in-items">
       <p class="title-text">Sign Up</p>
-      <app-input label="Name" [control]="signUpForm.controls.userName"></app-input>
-      <app-input label="Login" [control]="signUpForm.controls.login"></app-input>
-      <app-input type="Password" label="Password" [control]="signUpForm.controls.password"></app-input>
-      <app-input type="password" label="Enter your password again" [control]="signUpForm.controls.samePassword"></app-input>
+      <app-input placeholder="" label="Name" [control]="signUpForm.controls.userName"></app-input>
+      <app-input placeholder="" label="Login" [control]="signUpForm.controls.login"></app-input>
+      <app-input placeholder="" type="Password" label="Password" [control]="signUpForm.controls.password"></app-input>
+      <app-input placeholder="" type="password" label="Enter your password again" [control]="signUpForm.controls.samePassword"></app-input>
       <app-button (click)="register()" [disabled]="signUpForm.touched && signUpForm.invalid" name="Sign Up"></app-button>
       <input type="checkbox" class="custom-checkbox" id="agreement">
       <label for="agreement">I accept the agreement</label>
@@ -15,7 +15,7 @@
   </div>
 
   <div class="bg-image">
-    <img src="../../../assets/images/sign-up-bg-image.svg" alt="">
+    <img src="../../../../assets/images/sign-up-bg-image.svg" alt="">
   </div>
 
 </div>

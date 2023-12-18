@@ -15,7 +15,8 @@
     justify-content: space-between;
 
     .search-block {
-
+      display: flex;
+      gap: 1.5rem;
     }
 
     .add-block {
@@ -78,6 +79,8 @@
 }
 .teams-page-container.no-items {
   align-items: center;
+  justify-content: flex-start;
+  gap: 139px;
 }
 @media screen and (max-width: $phone-extension){
   .teams-page-header {
@@ -85,6 +88,10 @@
     gap: 1rem;
     padding: 1rem 12px;
     align-items: stretch !important;
+
+    .search-block {
+      flex-direction: column;
+    }
   }
   .teams-page-container {
     margin: 0;
@@ -98,6 +105,33 @@
 
   app-paginator {
     padding: 0 1rem 0.75rem 1rem;
+  }
+
+  .no-items {
+    justify-content: flex-start;
+    gap: 0 !important;
+  }
+
+  .no-items-block {
+    padding: 0 !important;
+    border-radius: 0 !important;
+
+    img {
+      width: 100%;
+    }
+
+    .no-items-text-block {
+      gap: 45px !important;
+      padding-bottom: 19px;
+
+      .no-items-title {
+        font-size: 17px !important;
+      }
+
+      .no-items-description {
+        font-size: 15px !important;
+      }
+    }
   }
 }
 ::ng-deep app-players-list {

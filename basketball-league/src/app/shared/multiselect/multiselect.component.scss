@@ -1,6 +1,6 @@
 .select-container {
-  max-width: 366px;
-
+  width: 366px;
+  background: #FFF;
   .select-block {
     display: flex;
     //align-items: center;
@@ -48,10 +48,22 @@
         display: flex;
         padding: 1rem;
         cursor: pointer;
+
+        .expanded-arrow {
+          transform: rotate(180deg);
+          transition: 0.3s ease;
+        }
       }
     }
   }
   .select-dropdown {
+    position: absolute;
+    z-index: 2;
+    background: var(--white, #FFF);
+    margin-top: 4px;
+    border: 1px solid #E1E2E8;
+    box-shadow: 0px 0px 0px 0px rgba(149, 149, 208, 0.10);
+
     display: flex;
     flex-direction: column;
     border-radius: 4px;

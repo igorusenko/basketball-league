@@ -4,8 +4,8 @@ import {TeamModelForm} from "../../../core/forms/team/team-model-form";
 import {FileInterface} from "../../../core/interfaces/file/file.interface";
 import {FileService} from "../../../core/services/image/file.service";
 import {Observable} from "rxjs";
-import {TeamsService} from "../../../core/services/teams.service";
-import {ICreateTeam, IUpdateTeam, TeamDto} from "../../../core/interfaces/team-interface";
+import {TeamsService} from "../../../core/services/teams/teams.service";
+import {ICreateTeam, IUpdateTeam, TeamDto} from "../../../core/interfaces/teams/team-interface";
 import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {HeaderService} from "./core/services/header.service";
+import {HeaderService} from "./core/services/header/header.service";
 import {animate, state, style, transition, trigger} from "@angular/animations";
 
 @Component({

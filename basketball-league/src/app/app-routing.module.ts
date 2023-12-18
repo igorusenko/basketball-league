@@ -8,7 +8,7 @@ const routes: Routes = [
     canActivate: [AuthorizeGuard]
   },
   {
-    path: 'authorization', loadChildren: () => import('./authorization/authorization.module').then(m => m.AuthorizationModule)
+    path: 'authorization', loadChildren: () => import('./pages/authorization/authorization.module').then(m => m.AuthorizationModule)
   }
 ];
 

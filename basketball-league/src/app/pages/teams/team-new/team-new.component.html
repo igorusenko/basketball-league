@@ -13,10 +13,10 @@
       </div>
 
       <div class="team-new-fields">
-        <app-input [control]="teamForm.controls.name" label="Name"></app-input>
-        <app-input [control]="teamForm.controls.division" label="Division"></app-input>
-        <app-input [control]="teamForm.controls.conference" label="Conference"></app-input>
-        <app-input type="number" [control]="teamForm.controls.foundationYear" label="Year of foundation"></app-input>
+        <app-input placeholder="" [control]="teamForm.controls.name" label="Name"></app-input>
+        <app-input placeholder="" [control]="teamForm.controls.division" label="Division"></app-input>
+        <app-input placeholder="" [control]="teamForm.controls.conference" label="Conference"></app-input>
+        <app-input placeholder="" type="number" [control]="teamForm.controls.foundationYear" label="Year of foundation"></app-input>
 
         <div class="buttons-block">
           <app-button [routerLink]="['/teams']" [cancel]="true" name="Cancel"></app-button>

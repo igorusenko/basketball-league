@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {TeamsListInterface} from "../../../core/interfaces/team-interface";
+import {TeamsListInterface} from "../../../core/interfaces/teams/team-interface";
 import {FormControl} from "@angular/forms";
-import {TeamsService} from "../../../core/services/teams.service";
+import {TeamsService} from "../../../core/services/teams/teams.service";
 import {Router} from "@angular/router";
 import {FileService} from "../../../core/services/image/file.service";
 
@@ -29,6 +29,7 @@ export class TeamsListComponent implements OnInit{
   }
 
   getTeams(): void {
+    this.teamsService.teamsFilter.pageSize = 6;
     this.teamsService.teams$.subscribe(x => {
       this.teamsList = x;
     })

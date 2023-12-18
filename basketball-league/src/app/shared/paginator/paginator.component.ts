@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
-import {PaginatorItemInterface} from "../../core/interfaces/paginator-item.intarface";
-import {SelectItemInterface} from "../../core/interfaces/select-item.interface";
+import {PaginatorItemInterface} from "../../core/interfaces/paginator/paginator-item.intarface";
+import {SelectItemInterface} from "../../core/interfaces/select/select-item.interface";
 import {FormControl} from "@angular/forms";
 
 @Component({

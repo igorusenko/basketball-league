@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import {RouterModule, RouterOutlet} from "@angular/router";
 import {pagesRoutes} from "./pages-routing.module";
-import {UiComponent} from "../ui/ui.component";
+import {UiComponent} from "./ui/ui.component";
 import {SharedModule} from "../shared/shared.module";
 import { PagesComponent } from './pages.component';
 import {HeaderComponent} from "../layouts/header/header.component";

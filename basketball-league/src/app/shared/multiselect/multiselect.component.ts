@@ -1,7 +1,8 @@
 import {Component, HostListener, Input} from '@angular/core';
-import {SelectItemInterface} from "../../core/interfaces/select-item.interface";
+import {SelectItemInterface} from "../../core/interfaces/select/select-item.interface";
 import {SelectService} from "../select/select.service";
 import {MiltiselectService} from "./miltiselect.service";
+import {FormControl} from "@angular/forms";
 
 @Component({
   selector: 'app-multiselect',
@@ -11,6 +12,7 @@ import {MiltiselectService} from "./miltiselect.service";
 export class MultiselectComponent {
   @Input() multiple: boolean = false;
   @Input() selectName: string = 'aboba';
+  @Input() control: FormControl<any>;
   @Input() options: Array<SelectItemInterface> = [
     {name: 'Test', id: 0, choosen: true},
     {name: 'Test1', id: 1},
@@ -44,23 +46,31 @@ export class MultiselectComponent {
     if (!this.choosenItems.some(choosenItem => choosenItem.id === item.id)) {
       item.choosen = true;
       this.choosenItems.push(item);
+      this.control.patchValue(this.choosenItems.map(x => x.id));
     }
-    else this.choosenItems.splice(this.choosenItems.findIndex(x => x.id === item.id), 1)
+    else {
+      this.choosenItems.splice(this.choosenItems.findIndex(x => x.id === item.id), 1)
+      this.control.patchValue(this.choosenItems.map(x => x.id))
+    }
   }
 
   getChoosenOptions(): Array<SelectItemInterface> {
-    return this.choosenItems.filter(x => x.choosen).slice(0,3);
+    return this.choosenItems.filter(x => x.choosen).slice(0,2);
   }
 
   unCheckAllOptions(): void {
     this.choosenItems = [];
+    this.control.patchValue([]);
   }
 
   deleteChoosenOption(id: number | string): void {
     this.choosenItems.splice(this.choosenItems.findIndex(option => option.id === id), 1);
+    this.control.patchValue(this.choosenItems.map(x => x.id))
   }
 
   isActiveOption(item: SelectItemInterface): boolean {
     return this.choosenItems.some(option => option.id === item.id && option.choosen)
   }
+
+  protected readonly document = document;
 }

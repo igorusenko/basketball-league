@@ -6,10 +6,10 @@ import {
   ICreatePlayer, IUpdatePlayer,
   PlayerDto,
   PlayersListInterface
-} from "../interfaces/players/players-interface";
-import {environment} from "../../../environments/environment";
-import {ICreateTeam, IUpdateTeam, TeamDto} from "../interfaces/team-interface";
-import {PositionsDto} from "../interfaces/postitions/positions-interface";
+} from "../../interfaces/players/players-interface";
+import {environment} from "../../../../environments/environment";
+import {ICreateTeam, IUpdateTeam, TeamDto} from "../../interfaces/teams/team-interface";
+import {PositionsDto} from "../../interfaces/postitions/positions-interface";
 
 @Injectable({
   providedIn: 'root'
@@ -36,7 +36,7 @@ export class PlayersService {
         name: model.name,
         page: model.page,
         pageSize: model.pageSize,
-        teamIds: model.teamIds
+        teamIds: model.teamIds!
       }
     });
     return this.http.get<PlayersListInterface>(url, {params})

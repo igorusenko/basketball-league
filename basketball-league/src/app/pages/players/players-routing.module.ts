@@ -8,7 +8,7 @@ import {TeamListResolver} from "../teams/team-list.resolver";
 import {PlayersInfoResolver} from "./player-info/players-info.resolver";
 
 export const playersRoutes: Routes = [
-  {path: '', component: PlayersListComponent},
+  {path: '', component: PlayersListComponent, resolve: [TeamListResolver], data: {breadcrumb: 'players-list'}},
   {path: 'new', component: PlayerNewComponent, data: {breadcrumb: 'Add new Player'}, resolve: [TeamListResolver]},
   {
     path: ':id', children: [

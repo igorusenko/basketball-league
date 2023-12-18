@@ -1,9 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {AuthService} from "../../core/services/auth.service";
+import {AuthService} from "../../../core/services/authorization/auth.service";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
-import {SignInForm} from "../../core/forms/sign-in-form";
-import {SignInInterface} from "../../core/interfaces/sign-in-interface";
+import {SignInForm} from "../../../core/forms/authorization/sign-in-form";
+import {SignInInterface} from "../../../core/interfaces/authorization/sign-in-interface";
 import {Router} from "@angular/router";
+import {NotificationService} from "../../../core/services/notification/notification.service";
 
 @Component({
   selector: 'app-sign-in',
@@ -16,7 +17,8 @@ export class SignInComponent implements OnInit {
 
   constructor(private authService: AuthService,
               private _fb: FormBuilder,
-              private router: Router) {
+              private router: Router,
+              private notify: NotificationService) {
 
   }
 
@@ -25,9 +27,15 @@ export class SignInComponent implements OnInit {
         next: value => {
           if (value.token) {
             this.authService.setUser(value);
-            this.router.navigate(['ui'])
+            this.router.navigate(['teams'])
           }
         },
+        complete: () => {
+          this.notify.showSuccess('Authentication successful!')
+        },
+        error: error => {
+          this.notify.showError('User with the specified username / password was not found.')
+        }
       }
     )
   }
