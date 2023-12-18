@@ -1,11 +1,12 @@
 <div [ngStyle]="{'width': width ? width : '364px', 'max-width': width}" class="custom-field">
-  <label *ngIf="label">{{label}}</label>
+  <label [for]="label" *ngIf="label">{{label}}</label>
   <input autocomplete="false"
          [type]="type"
          [formControl]="control"
          [placeholder]="placeholder"
          [class.error]="control.touched && control.errors"
          [maxlength]="maxLength"
+         [id]="label"
   />
   <div *ngIf="control.touched && control.hasError('required')" class="errors-block">
     Required

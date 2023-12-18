@@ -3,8 +3,8 @@
   <div class="sign-in-block">
     <div class="sign-in-items">
       <p class="title-text">Sign In</p>
-      <app-input label="Login" [control]="signInForm.controls.login"></app-input>
-      <app-input type="Password" label="Password" [control]="signInForm.controls.password"></app-input>
+      <app-input placeholder="" label="Login" [control]="signInForm.controls.login"></app-input>
+      <app-input placeholder="" type="Password" label="Password" [control]="signInForm.controls.password"></app-input>
       <app-button [disabled]="signInForm.invalid" (click)="login()" name="Sign In"></app-button>
       <p class="subtitle-text">Not a member yet? <a class="custom-a" [routerLink]="['/authorization/sign-up']">Sign Up</a></p>
     </div>

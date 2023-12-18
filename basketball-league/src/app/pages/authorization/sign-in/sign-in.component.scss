@@ -3,13 +3,14 @@
   display: flex;
   flex-direction: row;
   justify-content: center;
-  align-items: center;
+  //align-items: center;
   height: 100%;
-  background: #F5FBFF;
+
   .sign-in-block {
-    flex: 1;
+    flex: 40;
     display: flex;
     justify-content: center;
+    align-items: center;
     .sign-in-items {
       display: flex;
       flex-direction: column;
@@ -29,15 +30,22 @@
   }
 
   .bg-image {
-    flex: 1;
+    flex: 60;
+    display: flex;
+    justify-content: center;
+    background: #F5FBFF;
+
+    img {
+      max-width: 605px;
+    }
   }
 }
-@media screen and (max-width: $phone-extension){
+@media screen and (max-width: 1000px){
   .sign-in-container {
     background: #FFF;
   }
   .bg-image {
-    display: none;
+    display: none !important;
   }
   .title-text {
     text-align: center;

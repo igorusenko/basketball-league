@@ -50,7 +50,7 @@ export class SignUpComponent implements OnInit{
       next: value => {
         if (value.token) {
           this.authService.setUser(value);
-          this.router.navigate(['teams'])
+          this.router.navigate(['/teams'])
         }
       },
       complete: () => {
