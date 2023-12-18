@@ -45,6 +45,13 @@
   color: red;
 }
 
+.password-eye {
+  position: absolute;
+  cursor: pointer;
+  top: 37px;
+  left: 335px;
+}
+
 @media screen and (max-width: $phone-extension){
   .custom-field {
     //width: 151px !important;

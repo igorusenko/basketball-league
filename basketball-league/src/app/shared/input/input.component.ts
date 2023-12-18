@@ -8,8 +8,10 @@ import {max} from "rxjs";
   styleUrls: ['./input.component.scss']
 })
 export class InputComponent {
-
+  showPassword: boolean = false;
   @Input() type: string;
+  @Input() isSubmitted: boolean = false;
+  @Input() isPassword: boolean = false;
   @Input() maxLength: number = 50;
   @Input() max: number;
   @Input() width: string;
