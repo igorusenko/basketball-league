@@ -2,7 +2,7 @@
   <div class="select-block">
     <div class="select-inner">
       <div class="choosen-item" *ngFor="let item of getChoosenOptions()">
-        <p>{{item.name}}</p>
+        <p>{{item.name.length > 10 ? (item.name | slice:0:10) + '...' : item.name}}</p>
         <img (click)="deleteChoosenOption(item.id)" src="./assets/icons/close.svg" alt="">
       </div>
       <div class="choosen-item" *ngIf="choosenItems.length > 2">
