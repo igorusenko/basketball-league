@@ -27,6 +27,8 @@ export class PlayerInfoComponent implements OnInit{
   }
 
   deletePlayer(): void {
+    var result = confirm("Are you sure you want to delete the player?");
+    if (result)
     this.playerService.deletePlayer(this.player.id!).subscribe(x => {
       this.router.navigate(['/players']);
       this.playerService.refreshPlayersList();

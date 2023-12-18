@@ -43,6 +43,8 @@ export class TeamInfoComponent implements OnInit {
   }
 
   deleteTeam(): void {
+    var result = confirm("Are you sure you want to delete the team?");
+    if (result)
     this.teamsService.deleteTeam(this.teamId).subscribe(x => {
       this.route.navigate(['/teams']);
       this.teamsService.refreshTeamsList();
