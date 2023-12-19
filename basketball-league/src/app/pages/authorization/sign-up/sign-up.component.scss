@@ -11,6 +11,8 @@
     justify-content: center;
     align-items: center;
     .sign-in-items {
+      max-width: 366px;
+      width: 366px;
       display: flex;
       flex-direction: column;
       gap: 2rem;
@@ -28,6 +30,8 @@
     }
     .agreement-text {
       color: #FF768E;
+      font-size: 12px;
+      padding-top: 5px;
     }
   }
 

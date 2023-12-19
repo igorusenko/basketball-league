@@ -16,10 +16,6 @@
       background: #FFF;
     }
 
-    .mobile-navbar-container {
-      display: none;
-    }
-
     .body-content {
       flex: 1;
       display: flex;
@@ -31,16 +27,42 @@
   }
 }
 
+.mobile-navbar-container {
+  display: none;
+}
 
 @media screen and (max-width: $phone-extension){
+  .main-layout {
+    position: relative;
+  }
   .mobile-navbar-container {
-    display: block !important;
-    position: absolute;
-    height: 100%;
+    width: 100%;
+    top: 62px;
+    left: 0;
+    height: calc(100vh - 62px);
+    display: flex !important;
+    position: fixed;
     z-index: 9;
-    background: #FFF;
+
+    app-navbar {
+      flex: 1;
+      background: #FFF;
+    }
+
+    .back-layout {
+      flex: 1;
+    }
   }
   .desktop-navbar-container {
     display: none;
+  }
+  app-header {
+    position: fixed;
+    width: 100vw;
+    z-index: 1;
+  }
+  .body {
+    position: relative;
+    top: 62px;
   }
 }

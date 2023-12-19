@@ -1,9 +1,11 @@
 <div [id]="'select' + selectName" class="select-container">
 
-  <div class="select-block">
+  <p style="padding-bottom: 0.5rem" class="label">{{label}}</p>
+
+  <div (click)="selectService.toggleSelect(selectName)"  [class.invalid-image-block]="isSubmitted && !control.value['id']" class="select-block">
     <div class="choosen-items-block">
       <p>
-        {{selectName === 'paginator' ? control.value : value.name}}
+        {{selectName === 'paginator' ? control.value : control.value ? control.value.name : value.name}}
       </p>
       <p class="placeholder" *ngIf="!control.value && control.value !== 0">
         {{placeholder}}
@@ -14,11 +16,13 @@
         <img src="./assets/icons/close_gray.svg" alt="">
       </div>
       <img src="./assets/icons/line_horizontal.svg" alt="">
-      <div (click)="selectService.toggleSelect(selectName)" class="expand-block">
+      <div class="expand-block">
         <img [class.expanded-arrow]="getDropdownState()" src="./assets/icons/expand.svg" alt="">
       </div>
     </div>
   </div>
+
+  <p *ngIf="isSubmitted && !control.value['id']" style="color: red; font-size: 14px; padding-top: 0.5rem" [class.invalid-image-block]="control.errors">Required</p>
 
   <div [@dropdownAnimation]="getDropdownState()" [ngStyle]="{'width': document.getElementById('select' + selectName)?.clientWidth + 'px', 'bottom': selectName === 'paginator' ? '45px' : ''}"
        *ngIf="getDropdownState()" class="select-dropdown">

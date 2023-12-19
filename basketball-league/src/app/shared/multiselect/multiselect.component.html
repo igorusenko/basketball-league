@@ -1,5 +1,5 @@
 <div [id]="'multiselect' + selectName" class="select-container">
-  <div class="select-block">
+  <div (click)="selectService.toggleSelect(selectName)" class="select-block">
     <div class="select-inner">
       <div class="choosen-item" *ngFor="let item of getChoosenOptions()">
         <p>{{item.name.length > 10 ? (item.name | slice:0:10) + '...' : item.name}}</p>
@@ -18,7 +18,7 @@
         <img src="./assets/icons/close_gray.svg" alt="">
       </div>
       <img src="./assets/icons/line_horizontal.svg" alt="">
-      <div (click)="selectService.toggleSelect(selectName)" class="expand-block">
+      <div class="expand-block">
         <img [class.expanded-arrow]="getDropdownState()" src="./assets/icons/expand.svg" alt="">
       </div>
     </div>

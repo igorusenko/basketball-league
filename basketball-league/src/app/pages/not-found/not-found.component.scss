@@ -1,0 +1,46 @@
+@import "src/variables";
+.not-found-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  align-items: center;
+  justify-content: center;
+
+  img {
+    max-width: 380px;
+  }
+
+  .not-found-text {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    align-items: center;
+
+    .title {
+      color: #FF768E;
+      font-weight: 800;
+      font-size: 36px;
+      text-align: center;
+    }
+
+    .subtitle {
+      color: #707070;
+      font-weight: 400;
+      font-size: 24px;
+      text-align: center;
+    }
+  }
+}
+
+@media screen and (max-width: $phone-extension){
+  img {
+    max-width: 285px !important;
+  }
+  .title {
+    font-size: 17px;
+  }
+  .subtitle {
+    font-size: 15px;
+  }
+}

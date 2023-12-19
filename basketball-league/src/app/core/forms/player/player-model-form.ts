@@ -5,10 +5,11 @@ export interface PlayerModelForm {
   number: FormControl<number | null | undefined>;
   position: FormControl<SelectControl | null | undefined>;
   team: FormControl<SelectControl | null | undefined>;
-  birthday: FormControl<Date | null | undefined>;
+  birthday: FormControl<Date | string | null | undefined>;
   height: FormControl<number | null | undefined>;
   weight: FormControl<number | null | undefined>;
-  avatarUrl: FormControl<string | null | undefined>;
+  imageToSend: FormControl<string | null | undefined>;
+  imageToView: FormControl<string | null | undefined>;
 }
 
 export interface SelectControl {

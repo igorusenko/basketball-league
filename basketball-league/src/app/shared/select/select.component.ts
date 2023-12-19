@@ -18,8 +18,10 @@ import {SelectControl} from "../../core/forms/player/player-model-form";
   ]
 })
 export class SelectComponent implements OnInit{
+  @Input() isSubmitted: boolean = false;
   @Input() multiple: boolean = false;
   @Input() selectName: string;
+  @Input() label: string;
   @Input() placeholder: string;
   @Input() options: Array<SelectItemInterface>;
   @Input() control: FormControl<any>;
@@ -63,7 +65,7 @@ export class SelectComponent implements OnInit{
 
 
   unCheckAllOptions(): void {
-    this.control.patchValue(null)
+    this.control.patchValue({id: null, name: null})
   }
 
   isActiveOption(item: SelectItemInterface): boolean {

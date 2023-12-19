@@ -1,4 +1,5 @@
 @import "src/variables";
+
 .team-new-container {
 
   .team-new-block {
@@ -16,6 +17,7 @@
         display: flex;
         align-items: center;
         gap: 1rem;
+
         img {
           cursor: pointer;
         }
@@ -40,9 +42,11 @@
         justify-content: center;
         min-width: 336px;
         min-height: 260px;
+
         img {
           max-width: 274px;
         }
+
         .overlay-image {
           position: absolute;
           top: 100px;
@@ -70,20 +74,32 @@
           display: flex;
           gap: 1.5rem;
 
+          app-input {
+            flex: 1;
+          }
         }
       }
     }
   }
 }
 
-@media screen and (max-width: $phone-extension){
+@media screen and (max-width: $phone-extension) {
   .team-new-block {
     padding: 0 !important;
     padding-top: 1rem !important;
   }
   .team-new-body {
     flex-direction: column;
+    align-items: stretch !important;
     padding: 1.5rem !important;
     gap: 3rem !important;
+  }
+}
+
+@media screen and (max-width: 1300px) {
+  .team-new-body {
+    flex-direction: column;
+    padding: 1.5rem !important;
+    align-items: stretch !important;
   }
 }

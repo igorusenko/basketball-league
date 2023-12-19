@@ -3,6 +3,7 @@ import {PlayerDto} from "../../../core/interfaces/players/players-interface";
 import {PlayersService} from "../../../core/services/players/players.service";
 import {FileService} from "../../../core/services/image/file.service";
 import {Router} from "@angular/router";
+import {NotificationService} from "../../../core/services/notification/notification.service";
 
 @Component({
   selector: 'app-player-info',
@@ -14,10 +15,11 @@ export class PlayerInfoComponent implements OnInit{
   hoveredEdit: boolean = false;
   hoveredDelete: boolean = false;
   player: PlayerDto;
-
+  currentDate: Date = new Date();
   constructor(public playerService: PlayersService,
               public fileService: FileService,
-              private router: Router) {
+              private router: Router,
+              private notify: NotificationService) {
   }
 
   ngOnInit() {
@@ -27,17 +29,24 @@ export class PlayerInfoComponent implements OnInit{
   }
 
   deletePlayer(): void {
-    var result = confirm("Are you sure you want to delete the player?");
-    if (result)
-    this.playerService.deletePlayer(this.player.id!).subscribe(x => {
-      this.router.navigate(['/players']);
-      this.playerService.refreshPlayersList();
+    this.playerService.deletePlayer(this.player.id!).subscribe({
+      complete: () => {
+        this.router.navigate(['/players']);
+        this.playerService.refreshPlayersList();
+      },
+      error: error => {
+        this.notify.showError(error.error)
+      }
     })
   }
 
 
   navigateToPlayerEdit(): void {
     this.router.navigate(['edit'])
+  }
+
+  getDate(date: Date): Date {
+    return new Date(date)
   }
 
 }

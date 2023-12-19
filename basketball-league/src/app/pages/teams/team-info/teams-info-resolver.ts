@@ -11,7 +11,7 @@ export class TeamsInfoResolver implements Resolve<Promise<TeamDto>> {
   }
 
   resolve(route: ActivatedRouteSnapshot): Promise<TeamDto> {
-    if (Number.isNaN(!route.paramMap.get('id')))
+    if (!Number.isNaN(route.paramMap.get('id')))
     this.playersService.playersFilter.teamIds = [Number(route.paramMap.get('id'))];
     if (route.paramMap.get('id')?.toString() !== 'new')
     return this.teamsService.getTeamById(Number(route.paramMap.get('id')));

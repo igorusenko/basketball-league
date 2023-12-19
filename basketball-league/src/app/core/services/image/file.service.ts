@@ -23,6 +23,6 @@ export class FileService {
   }
 
   getImage(url: string): string {
-    return environment.downloadImageUrl + url;
+   return url.includes('data:image') ? url : environment.downloadImageUrl + url;
   }
 }

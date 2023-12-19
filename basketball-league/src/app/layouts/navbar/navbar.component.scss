@@ -37,7 +37,7 @@
   p {
     font-size: 12px;
     :hover {
-      transition: 0.3s ease
+      transition: 0.3s ease;
     }
   }
 
@@ -51,6 +51,15 @@
 
   img {
     width: 24px;
+  }
+
+  &.active {
+    svg g path, svg path {
+      fill: #E4163A !important;
+    }
+    p {
+      color: #E4163A !important;
+    }
   }
 }
 .nav-item:hover {
@@ -70,12 +79,18 @@
   }
 
   .nav-items, .exit-block {
-    padding: 1rem;
+    padding: 1.5rem;
 
     .nav-item {
       flex-direction: row;
     }
 
+  }
+
+  .exit-block {
+    flex: 1;
+    display: flex;
+    align-items: flex-end;
   }
 
 }

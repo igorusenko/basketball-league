@@ -21,6 +21,9 @@ export class TeamsListComponent implements OnInit{
   }
 
   ngOnInit() {
+    this.teamsService.teamsFilter.name = '';
+    this.teamsService.setPage(1);
+    this.teamsService.setPageSize(6);
     this.getTeams();
     this.pageSizeControl.valueChanges.subscribe(pageSize => {
       this.teamsService.teamsFilter.pageSize = pageSize;

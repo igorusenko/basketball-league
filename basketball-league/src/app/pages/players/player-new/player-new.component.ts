@@ -2,16 +2,17 @@ import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {TeamModelForm} from "../../../core/forms/team/team-model-form";
 import {FileInterface} from "../../../core/interfaces/file/file.interface";
-import {ICreateTeam, IUpdateTeam, TeamDto} from "../../../core/interfaces/teams/team-interface";
+import {ICreateTeam, IUpdateTeam, TeamDto, TeamsListInterface} from "../../../core/interfaces/teams/team-interface";
 import {FileService} from "../../../core/services/image/file.service";
 import {TeamsService} from "../../../core/services/teams/teams.service";
 import {ActivatedRoute, Router} from "@angular/router";
-import {Observable} from "rxjs";
+import {Observable, of, switchMap} from "rxjs";
 import {PlayerModelForm} from "../../../core/forms/player/player-model-form";
 import {ICreatePlayer, IUpdatePlayer, PlayerDto} from "../../../core/interfaces/players/players-interface";
 import {PlayersService} from "../../../core/services/players/players.service";
 import {PositionsDto} from "../../../core/interfaces/postitions/positions-interface";
 import {SelectItemInterface} from "../../../core/interfaces/select/select-item.interface";
+import {NotificationService} from "../../../core/services/notification/notification.service";
 
 @Component({
   selector: 'app-player-new',
@@ -24,11 +25,12 @@ export class PlayerNewComponent implements OnInit {
   playerForm: FormGroup<PlayerModelForm> = this._fb.group<PlayerModelForm>({
     name: new FormControl('', Validators.required),
     number: new FormControl(null, [Validators.required, Validators.pattern('^[0-9]+$')]),
-    avatarUrl: new FormControl('', Validators.required),
-    birthday: new FormControl(new Date(), Validators.required),
-    height: new FormControl(null, [Validators.required, Validators.pattern('^[0-9]+$')]),
+    imageToSend: new FormControl('', Validators.required),
+    imageToView: new FormControl(''),
+    birthday: new FormControl('', Validators.required),
+    height: new FormControl(null, [Validators.required, Validators.pattern('^[0-9]+$'), Validators.min(50), Validators.max(300)]),
     position: new FormControl({id: null, name: null}, Validators.required),
-    weight: new FormControl(null, [Validators.required, Validators.pattern('^[0-9]+$')]),
+    weight: new FormControl(null, [Validators.required, Validators.pattern('^[0-9]+$'), Validators.min(30), Validators.max(200)]),
     team: new FormControl({id: null, name: null}, Validators.required),
   });
 
@@ -39,21 +41,28 @@ export class PlayerNewComponent implements OnInit {
   breadcrumb: string = '';
   positions: Array<string> = [];
   teams: Array<TeamDto>;
+  imageValidationError: boolean = false;
+  isSubmitted: boolean = false;
   constructor(private _fb: FormBuilder,
               public fileService: FileService,
               private playersService: PlayersService,
               private teamsService: TeamsService,
               private router: ActivatedRoute,
-              private route: Router) {
+              private route: Router,
+              private notify: NotificationService) {
   }
 
   ngOnInit() {
     if (this.router.snapshot.routeConfig?.path !== 'new') {
-      this.id = this.router.snapshot.params['id'];
-      this.getTeamById(this.id);
+      this.id = Number(this.router.snapshot.params['id']);
+      this.getPlayerById();
+    }
+    else {
+      this.getTeams().subscribe(teams => {
+        this.teams = teams.data;
+      });
     }
     this.getPositions();
-    this.getTeams();
   }
 
   getPositions(): void {
@@ -62,15 +71,14 @@ export class PlayerNewComponent implements OnInit {
     })
   }
 
-  getTeams(): void {
-    this.teamsService.teams$.subscribe(x => {
-      this.teams = x.data;
-    })
+  getTeams(): Observable<TeamsListInterface> {
+   return  this.teamsService.teams$;
   }
 
   updateForm(): void {
     this.playerForm.setValue({
-      avatarUrl: this.player.avatarUrl,
+      imageToSend: this.player.avatarUrl,
+      imageToView: this.player.avatarUrl,
       birthday: this.player.birthday,
       height: this.player.height,
       name: this.player.name,
@@ -78,13 +86,16 @@ export class PlayerNewComponent implements OnInit {
       position: {id: this.player.position, name: this.player.position},
       team: {id: this.player.team, name: this.teams.find(x => x.id === this.player.team)?.name},
       weight: this.player.weight
-    })
+    });
   }
 
-  getTeamById(id: number) {
-    this.playersService.getPlayerById(id).then(x => {
-      this.player = x;
-      this.updateForm();
+  getPlayerById() {
+    this.playersService.player$.subscribe(player => {
+      this.player = player;
+      this.getTeams().subscribe(teams => {
+        this.teams = teams.data;
+        this.updateForm();
+      });
     })
   }
 
@@ -98,10 +109,15 @@ export class PlayerNewComponent implements OnInit {
     for (let i = 0; i < input.files?.length!; i++) {
       files.push(input.files?.item(i)!);
     }
-    if (files && files.length > 0 && files.every(x => x.size <= this.maxSize)) {
+    if (files.some(file => file.size > this.maxSize)) {
+      this.validateImage();
+      this.notify.showError('The image file size is over 1MB.');
+    } else if (files.some(file => file.type !== 'image/png' && file.type !== 'image/jpeg' && file.type !== 'image/jpg' && file.type !== 'image/svg' && file.type !== 'image/ico')) {
+      this.validateImage();
+      this.notify.showError('Invalid file format.');
+    } else if (files && files.length > 0 && files.every(x => x.size <= this.maxSize)) {
+      this.imageValidationError = false;
       this.handleFiles(files);
-    } else {
-      alert('Один из файлов превышает допустимый размер в 3 MB.');
     }
   }
 
@@ -113,16 +129,19 @@ export class PlayerNewComponent implements OnInit {
           const image = e.target.result as string;
           const sizeInMB = this.bytesToMB(file.size);
           if (!this.viewFiles.find(x => x.name == file.name)) {
-            this.viewFiles = []
+            this.viewFiles = [];
             this.viewFiles.push(
-              {
-                fileToSend: file,
-                name: file.name.replace(/\s/g, ''),
-                size: sizeInMB,
-                urlToShow:  image,
-                type: file.type,
-              });
-            this.saveImage();
+                {
+                  fileToSend: file,
+                  name: file.name.replace(/\s/g, ''),
+                  size: sizeInMB,
+                  urlToShow: image,
+                  type: file.type,
+                });
+            this.imageValidationError = false;
+            this.playerForm.controls.imageToView.patchValue(image);
+          } else {
+            this.imageValidationError = true;
           }
         }
       };
@@ -136,20 +155,39 @@ export class PlayerNewComponent implements OnInit {
     return mb.toFixed(2) + ' MB';
   }
 
-  saveImage(): void {
-    this.fileService.saveImage(this.viewFiles[0].fileToSend!).subscribe(imageUrl => {
-      this.playerForm.controls.avatarUrl.patchValue(imageUrl)
-    })
+  saveImage(): Observable<string> {
+    return this.fileService.saveImage(this.viewFiles[0].fileToSend!);
   }
 
   saveChanges(): void {
-    this.buildRequest().subscribe(x => {
-      this.playersService.refreshPlayersList();
-      this.route.navigate(['/players']);
+    this.isSubmitted = true;
+    if (this.playerForm.controls.imageToView.value && this.playerForm.controls.imageToView.value?.length > 0 && !this.imageValidationError)
+    this.buildRequest().subscribe({
+      next: response => {
+        if (response) {
+          this.notify.showSuccess(this.id ? 'Player successfully edited' : 'Player successfully created')
+          this.playersService.refreshPlayersList();
+          this.route.navigate(['/players']);
+        }
+      },
+      error: error => {
+        this.notify.showError(error.error)
+      }
     })
   }
 
   buildRequest(): Observable<PlayerDto> {
+    if (this.viewFiles.length > 0) {
+      return this.saveImage()
+          .pipe(
+              switchMap((imageUrl: string) => {
+                this.playerForm.controls.imageToSend.patchValue(imageUrl);
+                if (this.playerForm.valid)
+                  return this.id ? this.playersService.updatePlayer(this.createModel()) : this.playersService.createPlayer(this.createModel());
+                else return of();
+              })
+          );
+    } else
     return this.id ? this.playersService.updatePlayer(this.createModel()) : this.playersService.createPlayer(this.createModel())
   }
 
@@ -159,10 +197,10 @@ export class PlayerNewComponent implements OnInit {
       number: this.playerForm.value.number,
       position: this.playerForm.value.position?.id,
       team: this.playerForm.value.team?.id,
-      birthday: this.playerForm.value.birthday,
+      birthday: new Date(this.playerForm.value.birthday!),
       height: this.playerForm.value.height,
       weight: this.playerForm.value.weight,
-      avatarUrl: this.playerForm.value.avatarUrl,
+      avatarUrl: this.playerForm.value.imageToSend,
       [this.id ? 'id' : '']: this.id
     }
   }
@@ -180,5 +218,12 @@ export class PlayerNewComponent implements OnInit {
       name: x.name,
       id: x.id
     })
+  }
+
+  validateImage(): void {
+    this.viewFiles = [];
+    this.playerForm.controls.imageToView.patchValue(null);
+    this.playerForm.controls.imageToSend.patchValue(null);
+    this.imageValidationError = true;
   }
 }

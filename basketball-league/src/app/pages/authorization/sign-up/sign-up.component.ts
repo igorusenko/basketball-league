@@ -47,7 +47,8 @@ export class SignUpComponent implements OnInit{
 
   register(): void {
     this.isSubmitted = true;
-    if (this.signUpForm.valid)
+    console.log(this.signUpForm.controls.password.errors)
+    if (this.signUpForm.valid && this.signUpForm.controls.isAcceptedPrivacy.value === true)
     this.authService.register(this.createModel).subscribe({
       next: value => {
         if (value.token) {
@@ -59,7 +60,7 @@ export class SignUpComponent implements OnInit{
         this.notify.showSuccess('Authentication successful!')
       },
       error: error => {
-        this.notify.showError('User with the specified username / password was not found.')
+        this.notify.showError(error.error)
       }
     })
   }

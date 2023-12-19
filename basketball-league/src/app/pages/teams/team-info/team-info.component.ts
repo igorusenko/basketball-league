@@ -5,6 +5,7 @@ import {PlayersService} from "../../../core/services/players/players.service";
 import {PlayerDto} from "../../../core/interfaces/players/players-interface";
 import {ActivatedRoute, Router} from "@angular/router";
 import {FileService} from "../../../core/services/image/file.service";
+import {NotificationService} from "../../../core/services/notification/notification.service";
 
 @Component({
   selector: 'app-team-info',
@@ -17,10 +18,12 @@ export class TeamInfoComponent implements OnInit {
   teamId: number;
   hoveredEdit: boolean = false;
   hoveredDelete: boolean = false;
+  currentDate: Date = new Date();
   constructor(private teamsService: TeamsService,
               private playersService: PlayersService,
-              private route: Router,
-              public fileService: FileService) {
+              private router: Router,
+              public fileService: FileService,
+              private notify: NotificationService) {
 
   }
 
@@ -43,12 +46,19 @@ export class TeamInfoComponent implements OnInit {
   }
 
   deleteTeam(): void {
-    var result = confirm("Are you sure you want to delete the team?");
-    if (result)
-    this.teamsService.deleteTeam(this.teamId).subscribe(x => {
-      this.route.navigate(['/teams']);
-      this.teamsService.refreshTeamsList();
+    this.teamsService.deleteTeam(this.teamId).subscribe({
+      complete: () => {
+        this.router.navigate(['/teams']);
+        this.teamsService.refreshTeamsList();
+      },
+      error: error => {
+        this.notify.showError(error.error)
+      }
     })
+  }
+
+  getDate(date: Date): Date {
+    return new Date(date)
   }
 
 }

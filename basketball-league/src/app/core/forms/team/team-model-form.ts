@@ -5,5 +5,6 @@ export interface TeamModelForm {
   foundationYear: FormControl<number | null | undefined>;
   division: FormControl<string | null | undefined>;
   conference: FormControl<string | null | undefined>;
-  imageUrl: FormControl<string | null | undefined>;
+  imageToView: FormControl<string | null | undefined>;
+  imageToSend: FormControl<string | null | undefined>;
 }

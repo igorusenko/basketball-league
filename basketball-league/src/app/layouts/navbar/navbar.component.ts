@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AuthService} from "../../core/services/authorization/auth.service";
-import {Router} from "@angular/router";
+import {NavigationEnd, Router} from "@angular/router";
 import {HeaderService} from "../../core/services/header/header.service";
 
 @Component({
@@ -8,7 +8,7 @@ import {HeaderService} from "../../core/services/header/header.service";
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss']
 })
-export class NavbarComponent {
+export class NavbarComponent{
   hoveredTeams: boolean = false;
   hoveredPlayers: boolean = false;
   constructor(private authService: AuthService,

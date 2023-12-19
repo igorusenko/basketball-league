@@ -59,7 +59,8 @@
 
         .team-details-row {
           display: flex;
-          justify-content: space-between;
+          //justify-content: space-between;
+          align-items: flex-start;
           gap: 10rem;
         }
 
@@ -164,6 +165,10 @@
     padding: 0;
   }
 
+  .team-info-container {
+    padding-top: 1rem;
+  }
+
   .team-info-image {
     padding-top: 2rem !important;
 
@@ -175,6 +180,7 @@
   .team-info-body, .team-details-row {
     flex-direction: column;
     gap: 2rem !important;
+    align-items: center !important;
   }
 
   .team-details, .team-info-details {

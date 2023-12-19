@@ -87,6 +87,7 @@ input.custom-checkbox:disabled+label::before {
   color: #fff;
   font-size: 16px;
   z-index: 9999;
+  max-width: 600px;
 }
 
 .success {
@@ -98,4 +99,7 @@ input.custom-checkbox:disabled+label::before {
 }
 img {
   max-width: 100%;
+}
+.invalid-image-block {
+  border: 1px solid #FF5761 !important;
 }

@@ -8,19 +8,20 @@
 
     <div class="team-new-body">
 
-      <div (click)="openChooseFile()" class="add-image-block">
-        <img [src]="teamForm.value.imageUrl ? fileService.getImage(teamForm.value.imageUrl!) : './assets/icons/add-image.svg'" alt="">
+      <div (click)="openChooseFile()" class="add-image-block" [class.invalid-image-block]="imageValidationError || (isSubmitted && teamForm.controls.imageToView.value?.length === 0)">
+        <img [src]="teamForm.controls.imageToView.value ? fileService.getImage(teamForm.controls.imageToView.value!) : './assets/icons/add-image.svg'" alt="">
+        <img *ngIf="teamForm.controls.imageToView.value?.length! > 0" class="overlay-image" src="./assets/icons/add-image.svg" alt="">
       </div>
 
       <div class="team-new-fields">
-        <app-input placeholder="" [control]="teamForm.controls.name" label="Name"></app-input>
-        <app-input placeholder="" [control]="teamForm.controls.division" label="Division"></app-input>
-        <app-input placeholder="" [control]="teamForm.controls.conference" label="Conference"></app-input>
-        <app-input placeholder="" type="number" [control]="teamForm.controls.foundationYear" label="Year of foundation"></app-input>
+        <app-input [isSubmitted]="isSubmitted" placeholder="" [control]="teamForm.controls.name" label="Name"></app-input>
+        <app-input [isSubmitted]="isSubmitted" placeholder="" [control]="teamForm.controls.division" label="Division"></app-input>
+        <app-input [isSubmitted]="isSubmitted" placeholder="" [control]="teamForm.controls.conference" label="Conference"></app-input>
+        <app-input [isSubmitted]="isSubmitted" placeholder="" type="number" [control]="teamForm.controls.foundationYear" label="Year of foundation"></app-input>
 
         <div class="buttons-block">
           <app-button [routerLink]="['/teams']" [cancel]="true" name="Cancel"></app-button>
-          <app-button [disabled]="teamForm.invalid" (click)="saveChanges()" name="Save"></app-button>
+          <app-button (click)="saveChanges()" name="Save"></app-button>
         </div>
       </div>
 

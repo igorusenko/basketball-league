@@ -9,6 +9,7 @@ import {NavbarComponent} from "../layouts/navbar/navbar.component";
 import {TeamListResolver} from "./teams/team-list.resolver";
 import {PlayersListResolver} from "./players/players-list.resolver";
 import {NgIf, NgStyle} from "@angular/common";
+import { NotFoundComponent } from './not-found/not-found.component';
 
 
 
@@ -17,7 +18,8 @@ import {NgIf, NgStyle} from "@angular/common";
     UiComponent,
     PagesComponent,
     HeaderComponent,
-    NavbarComponent
+    NavbarComponent,
+    NotFoundComponent
   ],
   imports: [
     SharedModule,

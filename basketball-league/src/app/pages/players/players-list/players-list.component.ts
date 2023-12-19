@@ -26,6 +26,9 @@ export class PlayersListComponent implements OnInit{
   }
 
   ngOnInit() {
+    this.playersService.playersFilter.name = '';
+    this.playersService.setPage(1);
+    this.playersService.setPageSize(6);
     this.getPlayers();
     this.getTeams();
     this.onPageSizeControlChange();

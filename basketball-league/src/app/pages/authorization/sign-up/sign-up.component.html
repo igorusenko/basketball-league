@@ -18,8 +18,8 @@
                id="agreement">
         <label [class.checkbox-text-error]="isSubmitted && signUpForm.controls.isAcceptedPrivacy.value === false"
                for="agreement">I accept the agreement</label>
+        <p class="agreement-text" *ngIf="isSubmitted && signUpForm.controls.isAcceptedPrivacy.value === false">You must be accept the agreement.</p>
       </div>
-      <p class="agreement-text" *ngIf="isSubmitted && signUpForm.controls.isAcceptedPrivacy.value === false">You must be accept the agreement.</p>
       <p class="subtitle-text">Already a member? <a class="custom-a" [routerLink]="['/authorization/sign-in']">Sign
         In</a></p>
     </div>

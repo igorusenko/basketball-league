@@ -13,8 +13,8 @@
       </div>
 
     </div>
-
-    <div class="teams-list-default" [ngClass]="{'teams-list-three-rows': pageSizeControl.value === 12, 'teams-list-five-rows': pageSizeControl.value === 24}">
+    <!--[ngClass]="{'teams-list-three-rows': pageSizeControl.value === 12, 'teams-list-five-rows': pageSizeControl.value === 24}"-->
+    <div class="teams-list-default">
       <app-team-card (click)="navigateToInfoCard(team.id)" [teamInfo]="team"
                      *ngFor="let team of teamsList.data"></app-team-card>
     </div>

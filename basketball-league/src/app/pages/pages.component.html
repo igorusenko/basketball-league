@@ -6,9 +6,6 @@
     <div class="desktop-navbar-container">
       <app-navbar></app-navbar>
     </div>
-    <div class="mobile-navbar-container" [@slideAnimation]="headerService.isMobileNavBarOpened ? 'visible' : 'hidden'">
-      <app-navbar></app-navbar>
-    </div>
     <div class="body-content">
 <!--      <app-breadcrumb></app-breadcrumb>-->
       <router-outlet></router-outlet>
@@ -18,3 +15,7 @@
 </div>
 
 
+<div class="mobile-navbar-container" [@slideAnimation]="headerService.isMobileNavBarOpened ? 'visible' : 'hidden'">
+  <app-navbar></app-navbar>
+  <div class="back-layout"></div>
+</div>
