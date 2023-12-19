@@ -80,7 +80,7 @@
   justify-content: flex-start;
   gap: 139px;
 }
-@media screen and (max-width: $phone-extension){
+@media screen and (max-width: 1200px){
   .teams-list-default {
     grid-template-rows: auto auto auto !important;
     grid-template-columns: repeat(2, 1fr) !important;
@@ -91,9 +91,15 @@
     flex-direction: column;
     gap: 1rem;
     padding: 1rem 12px;
-    align-items: stretch !important;
+    align-items: center !important;
+
+    .add-block {
+      width: 366px;
+      max-width: 366px;
+    }
   }
   .teams-page-container {
+    align-items: center;
     margin: 0;
   }
   .teams-list {
