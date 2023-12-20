@@ -1,0 +1,34 @@
+<div [id]="'multiselect' + selectName" class="select-container">
+  <div (click)="selectService.toggleSelect(selectName)" class="select-block">
+    <div class="select-inner">
+      <div class="choosen-item" *ngFor="let item of getChoosenOptions()">
+        <p>{{item.name.length > 10 ? (item.name | slice:0:10) + '...' : item.name}}</p>
+        <img (click)="deleteChoosenOption(item.id)" src="./assets/icons/close.svg" alt="">
+      </div>
+      <div class="choosen-item" *ngIf="choosenItems.length > 2">
+        ...
+      </div>
+      <div class="no-items" *ngIf="choosenItems.length === 0">
+        Select...
+      </div>
+    </div>
+
+    <div class="buttons-block">
+      <div *ngIf="choosenItems.length > 0" (click)="unCheckAllOptions()" class="close-block">
+        <img src="./assets/icons/close_gray.svg" alt="">
+      </div>
+      <img src="./assets/icons/line_horizontal.svg" alt="">
+      <div class="expand-block">
+        <img [class.expanded-arrow]="getDropdownState()" src="./assets/icons/expand.svg" alt="">
+      </div>
+    </div>
+  </div>
+
+  <div [ngStyle]="{'width': document.getElementById('multiselect' + selectName)?.clientWidth + 'px', 'bottom': selectName === 'paginator' ? '45px' : ''}"
+       *ngIf="getDropdownState()" class="select-dropdown">
+    <div *ngFor="let item of options" [class.active]="isActiveOption(item)" class="dropdown-item"
+         (click)="selectOption(item)">
+      {{item.name}}
+    </div>
+  </div>
+</div>

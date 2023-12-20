@@ -1,0 +1,39 @@
+@import "src/variables";
+.paginator-container {
+  display: flex;
+  justify-content: space-between;
+
+  .choose-page-block {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    * {
+      cursor: pointer;
+    }
+    p {
+      padding: 10px 1rem;
+      color: #707070;
+      border-radius: 4px;
+    }
+    p:hover, img:hover {
+      transform: scale(1.01); /* Увеличение при наведении */
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Подсветка тени при наведении */
+      transition: 0.3s ease
+    }
+    .active {
+      background-color: #E4163A;
+      color: #FFF;
+    }
+  }
+
+  .choose-count-block {
+
+  }
+
+}
+
+@media screen and (max-width: $phone_extension){
+  .choose-page-block {
+    gap: 0 !important;
+  }
+}

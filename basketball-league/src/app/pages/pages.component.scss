@@ -1,0 +1,68 @@
+@import 'src/variables';
+.main-layout {
+  flex-direction: column;
+  display: flex;
+  height: 100%;
+
+  app-header {
+    flex: 0;
+  }
+  .body {
+    flex: 1;
+    display: flex;
+    background: var(--ui-lightest-grey-1, #F6F6F6);
+
+    .desktop-navbar-container, app-navbar {
+      background: #FFF;
+    }
+
+    .body-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      ::ng-deep app-teams {
+        flex: 1;
+      }
+    }
+  }
+}
+
+.mobile-navbar-container {
+  display: none;
+}
+
+@media screen and (max-width: $phone-extension){
+  .main-layout {
+    position: relative;
+  }
+  .mobile-navbar-container {
+    width: 100%;
+    top: 62px;
+    left: 0;
+    height: calc(100vh - 62px);
+    display: flex !important;
+    position: fixed;
+    z-index: 9;
+
+    app-navbar {
+      flex: 1;
+      background: #FFF;
+    }
+
+    .back-layout {
+      flex: 1;
+    }
+  }
+  .desktop-navbar-container {
+    display: none;
+  }
+  app-header {
+    position: fixed;
+    width: 100vw;
+    z-index: 1;
+  }
+  .body {
+    position: relative;
+    top: 62px;
+  }
+}

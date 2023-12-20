@@ -1,0 +1,59 @@
+@import "src/variables";
+.custom-field {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  font-size: 14px;
+  position: relative;
+}
+.custom-field label {
+  color: #707070;
+}
+.custom-field input {
+  border-radius: 4px;
+  border: none;
+  -webkit-appearance: none;
+  -ms-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  padding: 12px;
+  font-size: 14px;
+  outline: none;
+  background: #F6F6F6;
+
+  &:hover {
+    background: #D1D1D1;
+  }
+
+  &:focus {
+    background: #D9D9D9;
+  }
+
+  &:disabled {
+      pointer-events: none;
+    color: #D1D1D1;
+  }
+}
+
+.error {
+  border: 1px solid red !important;
+}
+
+.errors-block {
+  color: red;
+}
+
+.password-eye {
+  position: absolute;
+  cursor: pointer;
+  top: 37px;
+  left: 335px;
+}
+
+@media screen and (max-width: $phone-extension){
+  .custom-field {
+    //width: 151px !important;
+    //max-width: 151px !important;
+  }
+}

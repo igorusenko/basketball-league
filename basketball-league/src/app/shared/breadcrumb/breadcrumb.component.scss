@@ -1,0 +1,18 @@
+@import "src/variables";
+.breadcrumbs-container {
+  padding: 2rem 0 0 5rem;
+  .breadcrumbs-items-list {
+    display: flex;
+    gap: 0.5rem;
+
+    .breadcrumb {
+
+    }
+  }
+}
+
+@media screen and (max-width: $phone-extension){
+  .breadcrumbs-container {
+    padding: 1rem;
+  }
+}

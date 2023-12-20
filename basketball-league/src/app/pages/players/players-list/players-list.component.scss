@@ -1,0 +1,146 @@
+@import "src/variables";
+.teams-page-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 1;
+  //align-items: center;
+  gap: 2rem;
+  margin: 2rem 5rem;
+
+  .teams-page-header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .search-block {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .add-block {
+
+    }
+  }
+
+  .teams-list-default {
+    display: grid;
+    grid-template-rows: auto auto;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
+
+    app-player-card {
+      cursor: pointer;
+    }
+    app-player-card:hover {
+      transform: scale(1.01); /* Увеличение при наведении */
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Подсветка тени при наведении */
+      transition: 0.3s ease
+    }
+  }
+
+  .teams-list-three-rows {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .teams-list-five-rows {
+    grid-template-columns: repeat(6, 1fr);
+  }
+
+  .no-items-block {
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    border-radius: 15px;
+    background: #FFF;
+    padding: 3rem 2.5rem;
+
+    .no-items-text-block {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2rem;
+
+      .no-items-title {
+        font-size: 36px;
+        font-weight: 800;
+        color: #FF768E;
+      }
+
+      .no-items-description {
+        font-size: 24px;
+        font-weight: 400;
+        color: #707070;
+      }
+    }
+  }
+}
+.teams-page-container.no-items {
+  align-items: center;
+  justify-content: flex-start;
+  gap: 139px;
+}
+@media screen and (max-width: 1200px){
+  .teams-page-header {
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem 12px;
+    align-items: center !important;
+
+    .search-block {
+      flex-direction: column;
+    }
+
+    .add-block {
+      width: 366px;
+      max-width: 366px;
+    }
+  }
+  .teams-page-container {
+    align-items: center;
+    margin: 0;
+  }
+  .teams-list-default {
+    grid-template-rows: auto auto auto !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    place-items: center !important;
+    gap: 12px !important;
+  }
+
+  app-paginator {
+    padding: 0 1rem 0.75rem 1rem;
+  }
+
+  .no-items {
+    justify-content: flex-start;
+    gap: 0 !important;
+  }
+
+  .no-items-block {
+    padding: 0 !important;
+    border-radius: 0 !important;
+
+    img {
+      width: 100%;
+    }
+
+    .no-items-text-block {
+      gap: 45px !important;
+      padding-bottom: 19px;
+
+      .no-items-title {
+        font-size: 17px !important;
+      }
+
+      .no-items-description {
+        font-size: 15px !important;
+      }
+    }
+  }
+}
+::ng-deep app-players-list {
+  display: flex;
+  flex: 1;
+}

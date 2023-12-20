@@ -1,0 +1,32 @@
+<div class="custom-field">
+  <label [for]="label" *ngIf="label">{{label}}</label>
+  <input autocomplete="off"
+         [type]="isPassword && !showPassword ? 'password' : type === 'date' ? 'date' : 'text'"
+         [formControl]="control"
+         [placeholder]="placeholder"
+         [class.error]="isSubmitted && control.errors"
+         [maxlength]="maxLength"
+         [id]="label"
+         [max]="max"
+  />
+  <span class="password-eye" *ngIf="isPassword && !showPassword" (click)="showPassword = !showPassword"><img src="./assets/icons/eye-closed.svg" alt=""></span>
+  <span class="password-eye" *ngIf="isPassword && showPassword" (click)="showPassword = !showPassword"><img src="./assets/icons/eye-opened.svg" alt=""></span>
+  <div *ngIf="isSubmitted && control.hasError('required')" class="errors-block">
+    Required
+  </div>
+  <div *ngIf="isSubmitted && control.touched && control.hasError('minlength')" class="errors-block">
+    Field must contain at least {{control.errors!['minlength']['requiredLength']}} characters.
+  </div>
+  <div *ngIf="isSubmitted && control.touched && control.hasError('min')" class="errors-block">
+    The field must have a minimum value of {{control.errors!['min']['min']}}.
+  </div>
+  <div *ngIf="isSubmitted && control.touched && control.hasError('max')" class="errors-block">
+    The field must have a maximum value of {{control.errors!['max']['max']}}.
+  </div>
+  <div *ngIf="isSubmitted && control.touched && control.hasError('passwordMismatch')" class="errors-block">
+    Password and Confirm Password must match.
+  </div>
+  <div *ngIf="isSubmitted && control.touched && control.hasError('pattern')" class="errors-block">
+    Only numbers.
+  </div>
+</div>

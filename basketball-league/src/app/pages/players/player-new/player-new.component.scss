@@ -1,0 +1,108 @@
+@import "src/variables";
+
+.team-new-container {
+
+  .team-new-block {
+    padding: 2rem 5rem;
+
+    .team-new-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 2rem;
+      background: #FFF;
+      border-radius: 10px 10px 0 0;
+
+      .action-buttons {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+
+        img {
+          cursor: pointer;
+        }
+      }
+      p.custom-a span {
+        cursor: pointer;
+      }
+    }
+
+    .team-new-body {
+      display: flex;
+      gap: 136px;
+      align-items: flex-start;
+      background: #FFF;
+      padding: 3rem 73px;
+
+      .add-image-block {
+        position: relative;
+        align-items: end;
+        background: rgb(201, 201, 201);
+        //opacity: 0.5;
+        border-radius: 10px;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        min-width: 336px;
+        min-height: 260px;
+
+        img {
+          max-width: 274px;
+        }
+
+        .overlay-image {
+          position: absolute;
+          top: 100px;
+          z-index: 1; /* Устанавливаем z-index больше, чем у нижней картинки, чтобы поверх неё */
+        }
+
+      }
+
+      .team-new-fields {
+        display: flex;
+        flex-direction: column;
+        gap: 26px;
+
+        .buttons-block {
+          display: flex;
+          align-items: center;
+          gap: 1.5rem;
+
+          app-button {
+            width: 100%;
+          }
+        }
+
+        .fields-row {
+          display: flex;
+          gap: 1.5rem;
+
+          app-input {
+            flex: 1;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: $phone-extension) {
+  .team-new-block {
+    padding: 0 !important;
+    padding-top: 1rem !important;
+  }
+  .team-new-body {
+    flex-direction: column;
+    align-items: stretch !important;
+    padding: 1.5rem !important;
+    gap: 3rem !important;
+  }
+}
+
+@media screen and (max-width: 1300px) {
+  .team-new-body {
+    flex-direction: column;
+    padding: 1.5rem !important;
+    align-items: stretch !important;
+  }
+}

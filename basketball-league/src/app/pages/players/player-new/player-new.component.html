@@ -1,0 +1,51 @@
+<div class="team-new-container">
+
+  <div class="team-new-block">
+
+    <div class="team-new-header">
+      <p class="custom-a"><span [routerLink]="['/players']">Players</span> / {{player ? player.name : 'Add new Player'}}</p>
+    </div>
+
+    <div class="team-new-body">
+
+      <div (click)="openChooseFile()" class="add-image-block"
+           [class.invalid-image-block]="imageValidationError || (isSubmitted && playerForm.controls.imageToView.value?.length === 0)"
+           [ngStyle]="{'align-items': viewFiles.length > 0 || player ? 'end' : 'center'}">
+        <img [src]="playerForm.controls.imageToView.value ? fileService.getImage(playerForm.controls.imageToView.value!) : './assets/icons/add-image.svg'" alt="">
+        <img *ngIf="playerForm.controls.imageToView.value?.length! > 0" class="overlay-image" src="./assets/icons/add-image.svg" alt="">
+      </div>
+
+      <div class="team-new-fields">
+        <app-input [isSubmitted]="isSubmitted" [control]="playerForm.controls.name" placeholder="" label="Name"></app-input>
+
+        <app-select label="Position" [isSubmitted]="isSubmitted" placeholder="Select..." [options]="mapPositions(positions)" [control]="playerForm.controls.position" selectName="Position"></app-select>
+        <app-select label="Team" [isSubmitted]="isSubmitted" placeholder="Select..." [options]="mapTeams(teams)" [control]="playerForm.controls.team" selectName="Team"></app-select>
+        <div class="fields-row">
+          <app-input [isSubmitted]="isSubmitted" [maxLength]="3" type="text" placeholder="" [control]="playerForm.controls.height" label="Height (cm)"></app-input>
+          <app-input [isSubmitted]="isSubmitted" [maxLength]="3" type="text" placeholder="" [control]="playerForm.controls.weight" label="Weight (kg)"></app-input>
+        </div>
+
+        <div class="fields-row">
+          <app-input [max]="maxDate" [isSubmitted]="isSubmitted" type="date" placeholder="" [control]="playerForm.controls.birthday" label="Birthday"></app-input>
+          <app-input [isSubmitted]="isSubmitted" type="text" placeholder="" [control]="playerForm.controls.number" label="Number"></app-input>
+        </div>
+
+
+        <div class="buttons-block">
+          <app-button [routerLink]="['/players']" [cancel]="true" name="Cancel"></app-button>
+          <app-button (click)="saveChanges()" name="Save"></app-button>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<input #fileInput
+       type="file"
+       (change)="onFileSelected($event)"
+       accept="image/*"
+       style="display: none"
+/>

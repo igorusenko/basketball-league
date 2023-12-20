@@ -1,0 +1,96 @@
+@import 'src/variables';
+
+.navbar-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 3.5rem;
+  justify-content: space-between;
+
+  .account-block {
+    display: none;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem;
+
+    img {
+      width: 3rem;
+    }
+
+    p {
+      font-size: 15px;
+    }
+  }
+
+  .nav-items {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+}
+.nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  p {
+    font-size: 12px;
+    :hover {
+      transition: 0.3s ease;
+    }
+  }
+
+  p.gray {
+    color: #9C9C9C;
+  }
+
+  p.red {
+    color: #E4163A;
+  }
+
+  img {
+    width: 24px;
+  }
+
+  &.active {
+    svg g path, svg path {
+      fill: #E4163A !important;
+    }
+    p {
+      color: #E4163A !important;
+    }
+  }
+}
+.nav-item:hover {
+  transform: scale(1.1); /* Увеличение при наведении */
+  transition: 0.3s ease;
+}
+@media screen and (max-width: $phone-extension){
+
+  .account-block {
+    display: flex !important;
+    border-bottom: 1px solid #9C9C9C;
+  }
+
+  .navbar-container {
+    justify-content: unset;
+    padding: 0;
+  }
+
+  .nav-items, .exit-block {
+    padding: 1.5rem;
+
+    .nav-item {
+      flex-direction: row;
+    }
+
+  }
+
+  .exit-block {
+    flex: 1;
+    display: flex;
+    align-items: flex-end;
+  }
+
+}

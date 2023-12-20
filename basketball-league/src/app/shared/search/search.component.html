@@ -1,0 +1,11 @@
+<div class="custom-field">
+  <label>{{label}}</label>
+  <input
+         (keyup.enter)="onEnter.emit(true)"
+         [id]="id"
+         [type]="type"
+         [formControl]="control"
+         [placeholder]="placeholder"
+         maxlength="50"
+  />
+</div>

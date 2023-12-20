@@ -1,0 +1,68 @@
+@import "src/variables";
+.team-info-container {
+  display: flex;
+  flex-direction: column;
+
+  .team-info-image-block {
+    display: flex;
+    justify-content: center;
+    border-radius: 4px 4px 0 0;
+    background: linear-gradient(#707070, #393939);
+    //padding: 1rem 0;
+    img {
+      max-width: 165px;
+      height: 150px;
+      object-fit: cover;
+      //padding: 65px 107px;
+    }
+  }
+
+  .team-info-block {
+    background: #303030;
+    border-radius: 0 0 4px 4px;
+    .team-info {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      gap: 12px;
+      padding: 0.5rem 0;
+
+      .team-name {
+        font-size: 18px;
+        color: #FFF;
+      }
+
+      .team-foundation-year {
+        font-size: 14px;
+        color: $light-gray;
+      }
+
+      p {
+        text-align: center;
+      }
+    }
+  }
+}
+@media screen and (max-width: $phone-extension) {
+  .team-info {
+    padding: 0 !important;
+  }
+  .team-info-container {
+    max-width: 170px;
+  }
+  .team-info-image-block {
+    max-height: 100px !important;
+    padding: 1.5rem 56px !important;
+
+    img {
+      width: 60px !important;
+      height: 60px !important;
+      object-fit: cover !important;
+      padding: 0 !important;
+    }
+  }
+  .team-info-block {
+    max-height: 100px;
+    padding: 22px 0;
+  }
+}

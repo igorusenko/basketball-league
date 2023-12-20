@@ -1,0 +1,59 @@
+@import '../../../../variables';
+.sign-in-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  //align-items: center;
+  height: 100%;
+  .sign-in-block {
+    flex: 40;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .sign-in-items {
+      max-width: 366px;
+      width: 366px;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+
+      .title-text {
+        color: #344472;
+        font-size: 36px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+      }
+      .subtitle-text {
+        text-align: center;
+      }
+    }
+    .agreement-text {
+      color: #FF768E;
+      font-size: 12px;
+      padding-top: 5px;
+    }
+  }
+
+  .bg-image {
+    flex: 60;
+    display: flex;
+    justify-content: center;
+    background: #F5FBFF;
+
+    img {
+      max-width: 605px;
+    }
+  }
+}
+@media screen and (max-width: 1000px){
+  .sign-in-container {
+    background: #FFF;
+  }
+  .bg-image {
+    display: none !important;
+  }
+  .title-text {
+    text-align: center;
+  }
+}
