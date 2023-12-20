@@ -11,6 +11,7 @@ export class TeamListResolver implements Resolve<Promise<TeamsListInterface>> {
 
   resolve(route: ActivatedRouteSnapshot): Promise<TeamsListInterface> {
     this.playersService.playersFilter.teamIds = [];
+    this.teamsService.teamsFilter.name = '';
     if (route.data['breadcrumb'] === 'Add new Player' || route.data['breadcrumb'] === 'Edit' || route.data['breadcrumb'] === 'players-list')
       this.teamsService.teamsFilter.pageSize = 20;
     else
