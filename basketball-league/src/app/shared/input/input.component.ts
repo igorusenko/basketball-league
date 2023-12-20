@@ -13,7 +13,7 @@ export class InputComponent {
   @Input() isSubmitted: boolean = false;
   @Input() isPassword: boolean = false;
   @Input() maxLength: number = 50;
-  @Input() max: number;
+  @Input() max: string;
   @Input() width: string;
   @Input() id: string;
   @Input() label: string;

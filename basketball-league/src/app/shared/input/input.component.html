@@ -7,6 +7,7 @@
          [class.error]="isSubmitted && control.errors"
          [maxlength]="maxLength"
          [id]="label"
+         [max]="max"
   />
   <span class="password-eye" *ngIf="isPassword && !showPassword" (click)="showPassword = !showPassword"><img src="./assets/icons/eye-closed.svg" alt=""></span>
   <span class="password-eye" *ngIf="isPassword && showPassword" (click)="showPassword = !showPassword"><img src="./assets/icons/eye-opened.svg" alt=""></span>

@@ -26,7 +26,7 @@
         </div>
 
         <div class="fields-row">
-          <app-input [isSubmitted]="isSubmitted" type="date" placeholder="" [control]="playerForm.controls.birthday" label="Birthday"></app-input>
+          <app-input [max]="maxDate" [isSubmitted]="isSubmitted" type="date" placeholder="" [control]="playerForm.controls.birthday" label="Birthday"></app-input>
           <app-input [isSubmitted]="isSubmitted" type="text" placeholder="" [control]="playerForm.controls.number" label="Number"></app-input>
         </div>
 

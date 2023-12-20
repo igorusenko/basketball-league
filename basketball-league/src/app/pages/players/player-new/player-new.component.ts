@@ -43,6 +43,7 @@ export class PlayerNewComponent implements OnInit {
   teams: Array<TeamDto>;
   imageValidationError: boolean = false;
   isSubmitted: boolean = false;
+  maxDate: string = this.calculateMaxDate();
   constructor(private _fb: FormBuilder,
               public fileService: FileService,
               private playersService: PlayersService,
@@ -225,5 +226,15 @@ export class PlayerNewComponent implements OnInit {
     this.playerForm.controls.imageToView.patchValue(null);
     this.playerForm.controls.imageToSend.patchValue(null);
     this.imageValidationError = true;
+  }
+
+  private calculateMaxDate(): string {
+    const tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate());
+
+    // Форматируем дату в строку 'yyyy-MM-dd', который принимается элементом input type="date"
+    const formattedDate = tomorrow.toISOString().split('T')[0];
+
+    return formattedDate;
   }
 }
