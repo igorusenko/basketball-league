@@ -1,4 +1,4 @@
-<div class="team-info-container">
+<div @fadeIn *ngIf="teamInfo" class="team-info-container">
 
   <div class="team-info-image-block">
     <img [src]="fileService.getImage(playerInfo.avatarUrl!)" alt="">

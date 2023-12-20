@@ -17,7 +17,7 @@
 
 <ng-template #hasPlayers>
 <!--    [ngClass]="{'teams-list-three-rows': pageSizeControl.value === 12, 'teams-list-five-rows': pageSizeControl.value === 24}"-->
-    <div class="teams-list-default">
+    <div  @fadeIn *ngIf="isViewList" class="teams-list-default">
       <app-player-card (click)="navigateToInfoCard(player.id)" [playerInfo]="player"
                        *ngFor="let player of playersList.data"></app-player-card>
     </div>
