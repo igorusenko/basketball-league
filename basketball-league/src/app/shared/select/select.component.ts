@@ -45,7 +45,7 @@ export class SelectComponent implements OnInit{
 
   private isClickInsideDiv(event: Event): boolean {
     const element = event.target as HTMLElement;
-    return !!element.closest('div.select-block');
+    return !!element.closest('div.select-block, p.label');
   }
 
   getDropdownState(): boolean {

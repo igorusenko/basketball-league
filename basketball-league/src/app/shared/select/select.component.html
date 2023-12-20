@@ -1,6 +1,6 @@
 <div [id]="'select' + selectName" class="select-container">
 
-  <p style="padding-bottom: 0.5rem" class="label">{{label}}</p>
+  <p (click)="selectService.toggleSelect(selectName)" style="padding-bottom: 0.5rem; cursor: pointer" class="label">{{label}}</p>
 
   <div (click)="selectService.toggleSelect(selectName)"  [class.invalid-image-block]="isSubmitted && !control.value['id']" class="select-block">
     <div class="choosen-items-block">
