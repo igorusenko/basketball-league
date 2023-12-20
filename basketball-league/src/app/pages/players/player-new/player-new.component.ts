@@ -80,7 +80,7 @@ export class PlayerNewComponent implements OnInit {
     this.playerForm.setValue({
       imageToSend: this.player.avatarUrl,
       imageToView: this.player.avatarUrl,
-      birthday: this.player.birthday,
+      birthday: new Date(this.player.birthday!).toISOString().split('T')[0],
       height: this.player.height,
       name: this.player.name,
       number: this.player.number,

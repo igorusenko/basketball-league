@@ -45,7 +45,7 @@ export class PlayerInfoComponent implements OnInit{
     this.router.navigate(['edit'])
   }
 
-  getDate(date: Date): Date {
+  getDate(date: Date | string): Date {
     return new Date(date)
   }
 

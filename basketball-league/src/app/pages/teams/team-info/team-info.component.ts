@@ -57,7 +57,7 @@ export class TeamInfoComponent implements OnInit {
     })
   }
 
-  getDate(date: Date): Date {
+  getDate(date: Date | string): Date {
     return new Date(date)
   }
 

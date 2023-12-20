@@ -11,7 +11,7 @@ export class PlayerDto {
   number: number | null | undefined;
   position: string | number | null | undefined;
   team: number | string | null | undefined;
-  birthday: Date | null | undefined;
+  birthday: Date | string | null | undefined;
   height: number | null | undefined;
   weight: number | null | undefined;
   avatarUrl: string | null | undefined;
